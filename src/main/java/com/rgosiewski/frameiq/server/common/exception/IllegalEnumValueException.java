@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.exception;
+package com.rgosiewski.frameiq.server.common.exception;
 
 public class IllegalEnumValueException extends RuntimeException {
     private final static String MESSAGE = "Enum not found for value";

@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.enums;
+package com.rgosiewski.frameiq.server.common.enums;
 
 public enum AccessMode {
     ACCESS_DENIED,

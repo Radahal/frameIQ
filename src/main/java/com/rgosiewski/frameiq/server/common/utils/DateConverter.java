@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.utils;
+package com.rgosiewski.frameiq.server.common.utils;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

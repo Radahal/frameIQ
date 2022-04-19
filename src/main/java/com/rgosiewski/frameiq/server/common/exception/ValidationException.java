@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.exception;
+package com.rgosiewski.frameiq.server.common.exception;
 
 public class ValidationException extends RuntimeException {
 

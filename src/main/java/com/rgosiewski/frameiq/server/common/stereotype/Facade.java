@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.stereotype;
+package com.rgosiewski.frameiq.server.common.stereotype;
 
 import org.springframework.stereotype.Service;
 

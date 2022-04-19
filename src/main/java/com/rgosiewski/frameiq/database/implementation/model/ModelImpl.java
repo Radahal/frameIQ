@@ -6,6 +6,7 @@ import com.rgosiewski.frameiq.database.exception.ActionNotAvailableException;
 import java.util.Date;
 
 public class ModelImpl implements IModel {
+
     @Override
     public int getId() {
         throw new ActionNotAvailableException();
@@ -17,42 +18,42 @@ public class ModelImpl implements IModel {
     }
 
     @Override
-    public int getUsIdInserted() {
+    public int getCreationUsId() {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public void setUsIdInserted(Integer usIdInserted) {
+    public void setCreationUsId(Integer creationUsId) {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public Date getDateInserted() {
+    public Date getCreationDate() {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public void setDateInserted(Date dateInserted) {
+    public void setCreationDate(Date creationDate) {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public int getUsIdModified() {
+    public int getModificationUsId() {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public void setUsIdModified(Integer usIdModified) {
+    public void setModificationUsId(Integer modificationUsId) {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public Date getDateModified() {
+    public Date getModificationDate() {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public void setDateModified(Date dateModified) {
+    public void setModificationDate(Date modificationDate) {
         throw new ActionNotAvailableException();
     }
 }

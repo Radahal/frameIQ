@@ -1,6 +1,6 @@
-package com.rgosiewski.frameiq.common.stereotype;
+package com.rgosiewski.frameiq.server.common.stereotype;
 
-import com.rgosiewski.frameiq.common.enums.RightType;
+import com.rgosiewski.frameiq.server.common.enums.RightType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

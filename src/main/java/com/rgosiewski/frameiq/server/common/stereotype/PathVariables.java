@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.stereotype;
+package com.rgosiewski.frameiq.server.common.stereotype;
 
 public final class PathVariables {
     public static final String ID = "id";

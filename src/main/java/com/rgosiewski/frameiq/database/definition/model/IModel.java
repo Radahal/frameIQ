@@ -9,19 +9,19 @@ public interface IModel extends Serializable {
 
     void setId(Integer id);
 
-    int getUsIdInserted();
+    int getCreationUsId();
 
-    void setUsIdInserted(Integer usIdInserted);
+    void setCreationUsId(Integer creationUsId);
 
-    Date getDateInserted();
+    Date getCreationDate();
 
-    void setDateInserted(Date dateInserted);
+    void setCreationDate(Date creationDate);
 
-    int getUsIdModified();
+    int getModificationUsId();
 
-    void setUsIdModified(Integer usIdModified);
+    void setModificationUsId(Integer modificationUsId);
 
-    Date getDateModified();
+    Date getModificationDate();
 
-    void setDateModified(Date dateModified);
+    void setModificationDate(Date modificationDate);
 }

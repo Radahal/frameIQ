@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.populator;
+package com.rgosiewski.frameiq.server.common.populator;
 
 import java.util.List;
 import java.util.stream.Collectors;

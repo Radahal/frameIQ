@@ -1,6 +1,4 @@
-package com.rgosiewski.frameiq.common.stereotype;
-
-import org.springframework.stereotype.Service;
+package com.rgosiewski.frameiq.server.common.stereotype;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,6 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Service
-public @interface Populator {
+public @interface ValueObject {
 }

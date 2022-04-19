@@ -1,4 +1,4 @@
-package com.rgosiewski.frameiq.common.populator;
+package com.rgosiewski.frameiq.server.common.populator;
 
 public abstract class ByIdDataPopulator<SOURCE, TARGET> {
 

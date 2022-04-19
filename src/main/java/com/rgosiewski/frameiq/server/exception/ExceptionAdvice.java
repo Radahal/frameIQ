@@ -1,9 +1,9 @@
 package com.rgosiewski.frameiq.server.exception;
 
-import com.rgosiewski.frameiq.common.exception.ExceptionResponse;
-import com.rgosiewski.frameiq.common.exception.MultiDetailException;
-import com.rgosiewski.frameiq.common.exception.ValidationException;
 import com.rgosiewski.frameiq.server.application.security.exception.SecuredAccessException;
+import com.rgosiewski.frameiq.server.common.exception.ExceptionResponse;
+import com.rgosiewski.frameiq.server.common.exception.MultiDetailException;
+import com.rgosiewski.frameiq.server.common.exception.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;

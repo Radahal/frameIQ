@@ -13,15 +13,15 @@ public interface IModel extends Serializable {
 
     void setCreationUsId(Integer creationUsId);
 
-    Date getCreationDate();
+    Date getCreationTime();
 
-    void setCreationDate(Date creationDate);
+    void setCreationTime(Date creationTime);
 
     int getModificationUsId();
 
     void setModificationUsId(Integer modificationUsId);
 
-    Date getModificationDate();
+    Date getModificationTime();
 
-    void setModificationDate(Date modificationDate);
+    void setModificationTime(Date modificationTime);
 }

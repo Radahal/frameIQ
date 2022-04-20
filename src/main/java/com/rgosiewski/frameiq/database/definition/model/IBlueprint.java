@@ -2,10 +2,6 @@ package com.rgosiewski.frameiq.database.definition.model;
 
 public interface IBlueprint extends IModel {
 
-    int getId();
-
-    void setId(int id);
-
     int getConfigurationId();
 
     void setConfigurationId(int configurationId);

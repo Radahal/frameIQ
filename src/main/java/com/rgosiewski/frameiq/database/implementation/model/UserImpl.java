@@ -17,16 +17,16 @@ public class UserImpl extends ModelImpl implements IUser {
     private int id;
 
     @Column(name = "us_creation_us_id")
-    private int usIdInserted;
+    private int creationUsId;
 
     @Column(name = "us_creation_time")
-    private Date dateInserted;
+    private Date creationTime;
 
     @Column(name = "us_modification_us_id")
-    private int usIdModified;
+    private int modificationUsId;
 
     @Column(name = "us_modification_time")
-    private Date dateModified;
+    private Date modificationTime;
 
     @Column(name = "us_name")
     private String name;
@@ -45,6 +45,51 @@ public class UserImpl extends ModelImpl implements IUser {
 
     @Column(name = "us_pass_id")
     private int passwordId;
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int getCreationUsId() {
+        return this.creationUsId;
+    }
+
+    @Override
+    public void setCreationUsId(Integer creationUsId) {
+        this.creationUsId = creationUsId;
+    }
+
+    @Override
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    @Override
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    @Override
+    public int getModificationUsId() {
+        return modificationUsId;
+    }
+
+    @Override
+    public void setModificationUsId(Integer modificationUsId) {
+        this.modificationUsId = modificationUsId;
+    }
+
+    @Override
+    public Date getModificationTime() {
+        return modificationTime;
+    }
+
+    @Override
+    public void setModificationTime(Date modificationTime) {
+        this.modificationTime = modificationTime;
+    }
 
     @Override
     public String getName() {
@@ -102,7 +147,7 @@ public class UserImpl extends ModelImpl implements IUser {
     }
 
     @Override
-    public void setPasswordId(int passwordId) {
+    public void setPasswordId(Integer passwordId) {
         this.passwordId = passwordId;
     }
 }

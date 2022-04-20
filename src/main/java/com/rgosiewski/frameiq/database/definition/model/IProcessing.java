@@ -6,7 +6,7 @@ public interface IProcessing extends IModel {
 
     int getBlueprintId();
 
-    void setBlueprintId(int blueprintId);
+    void setBlueprintId(Integer blueprintId);
 
     String getState();
 

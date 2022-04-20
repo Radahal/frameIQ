@@ -24,5 +24,5 @@ public interface IUser extends IModel {
 
     int getPasswordId();
 
-    void setPasswordId(int passwordId);
+    void setPasswordId(Integer passwordId);
 }

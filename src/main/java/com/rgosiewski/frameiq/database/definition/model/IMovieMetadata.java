@@ -4,13 +4,13 @@ public interface IMovieMetadata extends IModel {
 
     int getMovieId();
 
-    void setMovieId(int movieId);
+    void setMovieId(Integer movieId);
 
     int getExifMetadataId();
 
-    void setExifMetadataId(int exifMetadataId);
+    void setExifMetadataId(Integer exifMetadataId);
 
     String getProcessedMetadata();
 
-    void setProcessedMetadata(String processedMetadata);
+    void setProcessedMetadata(String metadata);
 }

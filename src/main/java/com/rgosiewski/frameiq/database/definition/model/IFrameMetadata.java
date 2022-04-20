@@ -4,11 +4,11 @@ public interface IFrameMetadata extends IModel {
 
     int getFrameId();
 
-    void setFrameId(int frameId);
+    void setFrameId(Integer frameId);
 
     int getExifMetadataId();
 
-    void setExifMetadataId(int exifMetadataId);
+    void setExifMetadataId(Integer exifMetadataId);
 
     String getProcessedMetadata();
 

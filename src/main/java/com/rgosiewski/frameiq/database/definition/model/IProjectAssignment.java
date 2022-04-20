@@ -4,9 +4,9 @@ public interface IProjectAssignment extends IModel {
 
     int getUserId();
 
-    void setUserId(int userId);
+    void setUserId(Integer userId);
 
     int getProjectId();
 
-    void setProjectId(int projectId);
+    void setProjectId(Integer projectId);
 }

@@ -4,11 +4,11 @@ public interface IFrame extends IModel {
 
     int getMovieId();
 
-    void setMovieId(int movieId);
+    void setMovieId(Integer movieId);
 
     int getOrdinal();
 
-    void setOrdinal(int ordinal);
+    void setOrdinal(Integer ordinal);
 
     String getName();
 

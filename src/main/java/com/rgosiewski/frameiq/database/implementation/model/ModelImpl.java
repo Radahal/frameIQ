@@ -28,12 +28,12 @@ public class ModelImpl implements IModel {
     }
 
     @Override
-    public Date getCreationDate() {
+    public Date getCreationTime() {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public void setCreationDate(Date creationDate) {
+    public void setCreationTime(Date creationTime) {
         throw new ActionNotAvailableException();
     }
 
@@ -48,12 +48,12 @@ public class ModelImpl implements IModel {
     }
 
     @Override
-    public Date getModificationDate() {
+    public Date getModificationTime() {
         throw new ActionNotAvailableException();
     }
 
     @Override
-    public void setModificationDate(Date modificationDate) {
+    public void setModificationTime(Date modificationTime) {
         throw new ActionNotAvailableException();
     }
 }

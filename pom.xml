@@ -37,6 +37,7 @@
         <springfox.version>2.9.2</springfox.version>
         <hibernate.version>5.6.7.Final</hibernate.version>
         <javax-persistence.version>2.2</javax-persistence.version>
+        <postgresql.version>42.3.3</postgresql.version>
     </properties>
 
     <dependencyManagement>
@@ -111,7 +112,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <!-- swagger -->

@@ -7,8 +7,10 @@ package com.rgosiewski.frameiq.server.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "com.rgosiewski.frameiq")
 public class FrameIQWebServer {
 
     public static void main(String[] args) {

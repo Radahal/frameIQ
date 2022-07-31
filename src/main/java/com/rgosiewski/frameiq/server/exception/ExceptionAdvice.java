@@ -4,8 +4,6 @@ import com.rgosiewski.frameiq.server.application.security.exception.SecuredAcces
 import com.rgosiewski.frameiq.server.common.exception.ExceptionResponse;
 import com.rgosiewski.frameiq.server.common.exception.MultiDetailException;
 import com.rgosiewski.frameiq.server.common.exception.ValidationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +16,7 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionAdvice {
-    private static final Logger logger = LoggerFactory.getLogger(ExceptionAdvice.class);
+    //private static final Logger logger = LogManager.getLogger(ExceptionAdvice.class);
 
     @ExceptionHandler({MissingServletRequestParameterException.class,
             ValidationException.class
@@ -27,27 +25,26 @@ public class ExceptionAdvice {
         return resolveResponse(exception, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({})
-    //clone users
-    public ResponseEntity<ExceptionResponse> handleBarRequestMultiDetailsCauses(MultiDetailException exception) {
-        return resolveResponse(exception, HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler()
+//    public ResponseEntity<ExceptionResponse> handleBarRequestMultiDetailsCauses(MultiDetailException exception) {
+//        return resolveResponse(exception, HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler()
+//    public ResponseEntity<ExceptionResponse> handleNotFoundCauses(Exception exception) {
+//        return resolveResponse(exception, HttpStatus.NOT_FOUND);
+//    }
 
-    @ExceptionHandler({})
-    public ResponseEntity<ExceptionResponse> handleNotFoundCauses(Exception exception) {
-        return resolveResponse(exception, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler({})
-    //
-    public ResponseEntity<ExceptionResponse> handleInternalCauses(Exception exception) {
-        return resolveResponse(exception, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler({})
-    public ResponseEntity<ExceptionResponse> handleInternalMultiDetailsCauses(MultiDetailException exception) {
-        return resolveResponse(exception, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler()
+//    //
+//    public ResponseEntity<ExceptionResponse> handleInternalCauses(Exception exception) {
+//        return resolveResponse(exception, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
+//
+//    @ExceptionHandler()
+//    public ResponseEntity<ExceptionResponse> handleInternalMultiDetailsCauses(MultiDetailException exception) {
+//        return resolveResponse(exception, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponse> handleServerCauses(Exception exception) {
@@ -69,17 +66,17 @@ public class ExceptionAdvice {
     }
 
     private ResponseEntity<ExceptionResponse> resolveResponse(Exception exception, HttpStatus httpStatus) {
-        logger.error("Exception caught", exception);
+        //logger.error("Exception caught", exception);
         return ResponseEntity.status(httpStatus).body(new ExceptionResponse(httpStatus, exception));
     }
 
     private ResponseEntity<ExceptionResponse> resolveResponse(String message, String description, Exception exception, HttpStatus httpStatus) {
-        logger.error("Exception caught", exception);
+        //logger.error("Exception caught", exception);
         return ResponseEntity.status(httpStatus).body(new ExceptionResponse(httpStatus, message, description, exception));
     }
 
-    private ResponseEntity<ExceptionResponse> resolveResponse(MultiDetailException exception, HttpStatus httpStatus) {
-        logger.error("Exception caught", exception);
+    private ResponseEntity<ExceptionResponse> resolveResponse3(MultiDetailException exception, HttpStatus httpStatus) {
+       // logger.error("Exception caught", exception);
         return ResponseEntity.status(httpStatus).body(new ExceptionResponse(httpStatus, exception.getMessage(), exception.getDetails()));
     }
 }

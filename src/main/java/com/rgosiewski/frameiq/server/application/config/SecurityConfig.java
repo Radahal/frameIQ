@@ -22,9 +22,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
 
-        http.formLogin()
-                .loginPage("/login").permitAll()
-                .and()
-                .logout().permitAll();
+        http.cors().and().csrf().disable();
+
+//        http.formLogin()
+//                .loginPage("/login").permitAll()
+//                .and()
+//                .logout().permitAll();
     }
 }

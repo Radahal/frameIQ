@@ -6,7 +6,11 @@
 package com.rgosiewski.frameiq.repository.management;
 
 import com.rgosiewski.frameiq.repository.enums.FileExtensions;
+import com.rgosiewski.frameiq.repository.exception.NonExistingProjectException;
 import org.springframework.stereotype.Service;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Service
 public class Repository {
@@ -18,8 +22,16 @@ public class Repository {
         this.repositoryUtils = repositoryUtils;
     }
 
-    public String getRepositoryPath() {
-        return repositoryUtils.getRepositoryPath();
+    public Path getRepositoryPath() {
+        return Paths.get(repositoryUtils.getRepositoryPath());
+    }
+
+    public Path getProjectPath(String projectName) {
+        Path projectPath = Paths.get(repositoryUtils.getRepositoryPath()).resolve(projectName);
+        if(projectPath.toFile().exists()) {
+            return projectPath;
+        }
+        throw new NonExistingProjectException(projectName);
     }
 
     public void createNewProject(String projectName) {

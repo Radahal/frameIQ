@@ -2,13 +2,13 @@ package com.rgosiewski.frameiq.database.definition.model;
 
 public interface IMovieMetadata extends IModel {
 
-    int getMovieId();
+    long getMovieId();
 
-    void setMovieId(Integer movieId);
+    void setMovieId(Long movieId);
 
-    int getExifMetadataId();
+    long getExifMetadataId();
 
-    void setExifMetadataId(Integer exifMetadataId);
+    void setExifMetadataId(Long exifMetadataId);
 
     String getProcessedMetadata();
 

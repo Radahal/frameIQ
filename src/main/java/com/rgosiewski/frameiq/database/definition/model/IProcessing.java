@@ -4,9 +4,9 @@ import java.util.Date;
 
 public interface IProcessing extends IModel {
 
-    int getBlueprintId();
+    long getBlueprintId();
 
-    void setBlueprintId(Integer blueprintId);
+    void setBlueprintId(Long blueprintId);
 
     String getState();
 

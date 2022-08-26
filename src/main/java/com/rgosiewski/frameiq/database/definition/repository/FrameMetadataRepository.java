@@ -1,10 +1,13 @@
 package com.rgosiewski.frameiq.database.definition.repository;
 
-import com.rgosiewski.frameiq.database.definition.model.IFrameMetadata;
+import com.rgosiewski.frameiq.database.implementation.model.FrameMetadataEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface FrameMetadataRepository extends JpaRepository<IFrameMetadata, Long> {
+import java.util.List;
 
+@Repository
+public interface FrameMetadataRepository extends JpaRepository<FrameMetadataEntity, Long> {
+
+    public List<FrameMetadataEntity> findAllByFrameId(Long frameId);
 }

@@ -6,7 +6,7 @@
 package com.rgosiewski.frameiq.alghorithm.video;
 
 import com.rgosiewski.frameiq.alghorithm.exception.ReadVideoException;
-import com.rgosiewski.frameiq.repository.enums.FileExtensions;
+import com.rgosiewski.frameiq.workspace.enums.FileExtensions;
 import nu.pattern.OpenCV;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

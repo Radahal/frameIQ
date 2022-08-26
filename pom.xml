@@ -136,6 +136,13 @@
             <artifactId>opencv</artifactId>
             <version>4.5.1-2</version>
         </dependency>
+
+        <!-- Exif metadata -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-imaging</artifactId>
+            <version>1.0-alpha3</version>
+        </dependency>
     </dependencies>
 
     <build>

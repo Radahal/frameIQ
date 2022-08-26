@@ -2,9 +2,9 @@ package com.rgosiewski.frameiq.database.definition.model;
 
 public interface IConfiguration extends IModel {
 
-    int getProjectId();
+    long getProjectId();
 
-    void setProjectId(Integer projectId);
+    void setProjectId(Long projectId);
 
     String getName();
 

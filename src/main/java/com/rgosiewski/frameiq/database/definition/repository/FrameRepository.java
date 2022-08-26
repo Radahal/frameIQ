@@ -1,10 +1,13 @@
 package com.rgosiewski.frameiq.database.definition.repository;
 
-import com.rgosiewski.frameiq.database.definition.model.IFrame;
+import com.rgosiewski.frameiq.database.implementation.model.FrameEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface FrameRepository extends JpaRepository<IFrame, Long> {
+import java.util.List;
 
+@Repository
+public interface FrameRepository extends JpaRepository<FrameEntity, Long> {
+
+    public List<FrameEntity> findAllByMovieId(Long movieId);
 }

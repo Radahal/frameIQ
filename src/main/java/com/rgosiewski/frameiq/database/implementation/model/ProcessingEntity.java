@@ -1,3 +1,8 @@
+/*
+ * Copyright © 2022 Rafał Gosiewski
+ * All rights reserved
+ */
+
 package com.rgosiewski.frameiq.database.implementation.model;
 
 import com.rgosiewski.frameiq.database.definition.model.IProcessing;

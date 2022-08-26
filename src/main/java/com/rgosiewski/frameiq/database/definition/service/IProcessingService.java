@@ -12,6 +12,8 @@ public interface IProcessingService {
 
     public ProcessingData getProcessing(Long processingId);
 
+    public List<ProcessingData> listAll();
+
     public List<ProcessingData> listAllByBlueprintId(Long blueprintId);
 
     public ProcessingData createProcessing(CreateProcessingData createProcessingData);

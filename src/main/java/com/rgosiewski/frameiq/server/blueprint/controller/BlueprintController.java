@@ -29,6 +29,11 @@ public class BlueprintController {
         return blueprintFacade.listBlueprints(projectId);
     }
 
+    @GetMapping("/{blueprintId}")
+    public BlueprintDTO getBlueprint(@PathVariable Long blueprintId) {
+        return blueprintFacade.getBlueprint(blueprintId);
+    }
+
     @PutMapping
     public BlueprintDTO createBlueprint(@PathVariable Long projectId,
                                       @RequestBody CreateBlueprintDTO createBlueprintDTO) {

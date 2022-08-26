@@ -28,6 +28,11 @@ public class ProcessingService implements IProcessingService {
     }
 
     @Override
+    public List<ProcessingData> listAll() {
+        return fromProcessingEntityPopulator.populateAll(processingRepository.findAll());
+    }
+
+    @Override
     public List<ProcessingData> listAllByBlueprintId(Long blueprintId) {
         return fromProcessingEntityPopulator.populateAll(processingRepository.findAllByBlueprintId(blueprintId));
     }
@@ -45,6 +50,8 @@ public class ProcessingService implements IProcessingService {
 
     @Override
     public ProcessingData editProcessing(EditProcessingData editProcessingData) {
-        return null;
+        ProcessingEntity entity = processingRepository.getById(editProcessingData.getId());
+        entity.setState(editProcessingData.getState().name());
+        return fromProcessingEntityPopulator.populate(processingRepository.saveAndFlush(entity));
     }
 }

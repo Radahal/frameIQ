@@ -27,8 +27,8 @@ public class MovieMetadataService implements IMovieMetadataService {
     }
 
     @Override
-    public List<MovieMetadataData> listMovieMetadata(Long frameId) {
-        return fromMovieMetadataEntityPopulator.populateAll(movieMetadataRepository.findAllByMovieId(frameId));
+    public List<MovieMetadataData> listMovieMetadata(Long movieId) {
+        return fromMovieMetadataEntityPopulator.populateAll(movieMetadataRepository.findAllByMovieId(movieId));
     }
 
     @Override

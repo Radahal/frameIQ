@@ -30,6 +30,11 @@ public class ConfigurationController {
         return configurationFacade.listConfigurations(projectId);
     }
 
+    @GetMapping("/{configurationId}")
+    public ConfigurationDTO getConfiguration(@PathVariable Long configurationId) {
+        return configurationFacade.getConfiguration(configurationId);
+    }
+
     @PutMapping
     public ConfigurationDTO createConfiguration(@PathVariable Long projectId,
                                       @RequestBody CreateConfigurationDTO createConfigurationDTO) {

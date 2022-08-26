@@ -22,7 +22,7 @@ public interface IUser extends IModel {
 
     void setEmail(String email);
 
-    int getPasswordId();
+    long getPasswordId();
 
-    void setPasswordId(Integer passwordId);
+    void setPasswordId(Long passwordId);
 }

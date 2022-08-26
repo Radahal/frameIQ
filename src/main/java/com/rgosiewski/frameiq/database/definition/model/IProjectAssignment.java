@@ -2,11 +2,11 @@ package com.rgosiewski.frameiq.database.definition.model;
 
 public interface IProjectAssignment extends IModel {
 
-    int getUserId();
+    long getUserId();
 
-    void setUserId(Integer userId);
+    void setUserId(Long userId);
 
-    int getProjectId();
+    long getProjectId();
 
-    void setProjectId(Integer projectId);
+    void setProjectId(Long projectId);
 }

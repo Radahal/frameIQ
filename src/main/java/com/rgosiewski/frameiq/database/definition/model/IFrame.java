@@ -2,9 +2,9 @@ package com.rgosiewski.frameiq.database.definition.model;
 
 public interface IFrame extends IModel {
 
-    int getMovieId();
+    long getMovieId();
 
-    void setMovieId(Integer movieId);
+    void setMovieId(Long movieId);
 
     int getOrdinal();
 

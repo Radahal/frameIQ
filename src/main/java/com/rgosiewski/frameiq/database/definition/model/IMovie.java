@@ -2,9 +2,9 @@ package com.rgosiewski.frameiq.database.definition.model;
 
 public interface IMovie extends IModel {
 
-    int getBlueprintId();
+    long getBlueprintId();
 
-    void setBlueprintId(Integer blueprintId);
+    void setBlueprintId(Long blueprintId);
 
     String getName();
 

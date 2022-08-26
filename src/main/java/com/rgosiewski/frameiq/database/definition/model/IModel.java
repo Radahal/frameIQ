@@ -5,21 +5,21 @@ import java.util.Date;
 
 public interface IModel extends Serializable {
 
-    int getId();
+    long getId();
 
-    void setId(Integer id);
+    void setId(Long id);
 
-    int getCreationUsId();
+    long getCreationUsId();
 
-    void setCreationUsId(Integer creationUsId);
+    void setCreationUsId(Long creationUsId);
 
     Date getCreationTime();
 
     void setCreationTime(Date creationTime);
 
-    int getModificationUsId();
+    long getModificationUsId();
 
-    void setModificationUsId(Integer modificationUsId);
+    void setModificationUsId(Long modificationUsId);
 
     Date getModificationTime();
 

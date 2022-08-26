@@ -30,7 +30,7 @@ public class ConfigurationService implements IConfigurationService {
 
     @Override
     public List<ConfigurationData> listConfigurations(Long projectId) {
-        return fromConfigurationEntityPopulator.populateAll(configurationRepository.listByProjectId(projectId));
+        return fromConfigurationEntityPopulator.populateAll(configurationRepository.findAllByProjectId(projectId));
     }
 
     @Override

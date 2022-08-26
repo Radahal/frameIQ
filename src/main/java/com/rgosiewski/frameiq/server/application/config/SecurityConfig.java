@@ -3,7 +3,7 @@
  * All rights reserved
  */
 
-package com.rgosiewski.frameiq.server.common.application.config;
+package com.rgosiewski.frameiq.server.application.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

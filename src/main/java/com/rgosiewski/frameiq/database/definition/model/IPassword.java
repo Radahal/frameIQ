@@ -1,6 +1,6 @@
 package com.rgosiewski.frameiq.database.definition.model;
 
-public interface PasswordImpl extends IModel {
+public interface IPassword extends IModel {
 
     String getSalt();
 

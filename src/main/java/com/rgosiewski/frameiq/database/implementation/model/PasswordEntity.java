@@ -1,5 +1,7 @@
 package com.rgosiewski.frameiq.database.implementation.model;
 
+import com.rgosiewski.frameiq.database.definition.model.IPassword;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "passwords")
-public class PasswordEntity extends ModelEntity implements com.rgosiewski.frameiq.database.definition.model.PasswordImpl {
+public class PasswordEntity extends ModelEntity implements IPassword {
 
     @Id
     @Column(name = "pass_id")

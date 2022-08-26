@@ -3,9 +3,9 @@
  * All rights reserved
  */
 
-package com.rgosiewski.frameiq.server.common.application.exception;
+package com.rgosiewski.frameiq.server.application.exception;
 
-import com.rgosiewski.frameiq.server.common.application.security.exception.SecuredAccessException;
+import com.rgosiewski.frameiq.server.application.security.exception.SecuredAccessException;
 import com.rgosiewski.frameiq.server.common.exception.ExceptionResponse;
 import com.rgosiewski.frameiq.server.common.exception.MultiDetailException;
 import com.rgosiewski.frameiq.server.common.exception.ValidationException;

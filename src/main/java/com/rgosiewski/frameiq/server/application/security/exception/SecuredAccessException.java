@@ -3,7 +3,7 @@
  * All rights reserved
  */
 
-package com.rgosiewski.frameiq.server.common.application.security.exception;
+package com.rgosiewski.frameiq.server.application.security.exception;
 
 public class SecuredAccessException extends RuntimeException {
 

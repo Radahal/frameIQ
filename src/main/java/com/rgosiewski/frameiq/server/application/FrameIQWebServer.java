@@ -3,7 +3,7 @@
  * All rights reserved
  */
 
-package com.rgosiewski.frameiq.server.common.application;
+package com.rgosiewski.frameiq.server.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

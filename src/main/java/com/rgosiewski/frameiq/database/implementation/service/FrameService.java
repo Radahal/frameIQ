@@ -15,11 +15,13 @@ import java.util.List;
 @Service
 public class FrameService implements IFrameService {
     private final FrameRepository frameRepository;
+    private final UserService userService;
     private final FrameDataFromFrameEntityPopulator fromFrameEntityPopulator;
 
     public FrameService(FrameRepository frameRepository,
-                        FrameDataFromFrameEntityPopulator fromFrameEntityPopulator) {
+                        UserService userService, FrameDataFromFrameEntityPopulator fromFrameEntityPopulator) {
         this.frameRepository = frameRepository;
+        this.userService = userService;
         this.fromFrameEntityPopulator = fromFrameEntityPopulator;
     }
 
@@ -38,9 +40,12 @@ public class FrameService implements IFrameService {
         FrameEntity entity = new FrameEntity();
         entity.setMovieId(createFrameData.getMovieId());
         entity.setName(createFrameData.getName());
+        entity.setOrdinal(createFrameData.getOrdinal());
         entity.setDescription(createFrameData.getDescription());
         entity.setCreationTime(new Date());
         entity.setModificationTime(new Date());
+        entity.setCreationUsId(userService.getAdminId());
+        entity.setModificationUsId(userService.getAdminId());
         return fromFrameEntityPopulator.populate(frameRepository.saveAndFlush(entity));
     }
 
@@ -50,6 +55,7 @@ public class FrameService implements IFrameService {
         entity.setName(editFrameData.getName());
         entity.setDescription(editFrameData.getDescription());
         entity.setModificationTime(new Date());
+        entity.setModificationUsId(userService.getAdminId());
         return fromFrameEntityPopulator.populate(frameRepository.saveAndFlush(entity));
     }
 }

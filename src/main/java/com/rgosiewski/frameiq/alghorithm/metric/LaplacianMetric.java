@@ -20,16 +20,9 @@ import java.nio.file.Path;
 
 public class LaplacianMetric extends ImageProcessingAlgorithm {
     private final Logger logger = LogManager.getLogger(LaplacianMetric.class);
-    private final Path imagePath;
-    private final double treshold;
-
-    public LaplacianMetric(Path imagePath, double treshold) {
-        this.imagePath = imagePath;
-        this.treshold = treshold;
-    }
 
     @Override
-    public double calculateMetric() {
+    public double calculateMetric(Path imagePath) {
         OpenCV.loadLocally();
         Mat image = Imgcodecs.imread(imagePath.toString());
         double focalMeasureScore = 0.0;
@@ -44,9 +37,6 @@ public class LaplacianMetric extends ImageProcessingAlgorithm {
                 Core.meanStdDev(destination, median, std);
                 focalMeasureScore = Math.pow(std.get(0, 0)[0], 2.0);
                 logger.info("Focal measure score for image {}: {}", imagePath.getFileName(), focalMeasureScore);
-                if (focalMeasureScore < treshold) {
-                    logger.info("Image {} qualified as blurry", imagePath.getFileName());
-                }
             }
         } catch (Exception e) {
             logger.error("Error calculating focal measure score for image {}", imagePath.getFileName());

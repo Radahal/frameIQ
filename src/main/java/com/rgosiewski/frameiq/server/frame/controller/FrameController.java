@@ -11,6 +11,7 @@ import com.rgosiewski.frameiq.server.frame.dto.FrameDTO;
 import com.rgosiewski.frameiq.server.frame.facade.FrameFacade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,13 +38,13 @@ public class FrameController {
 
     @PutMapping
     public FrameDTO createFrame(@PathVariable Long movieId,
-                                @RequestBody CreateFrameDTO createFrameDTO) {
+                                @RequestBody @Validated CreateFrameDTO createFrameDTO) {
         return frameFacade.createFrame(movieId, createFrameDTO);
     }
 
     @PatchMapping("/{frameId}")
     public FrameDTO editFrame(@PathVariable Long frameId,
-                              @RequestBody EditFrameDTO editFrameDTO) {
+                              @RequestBody @Validated EditFrameDTO editFrameDTO) {
         return frameFacade.editFrame(frameId, editFrameDTO);
     }
 

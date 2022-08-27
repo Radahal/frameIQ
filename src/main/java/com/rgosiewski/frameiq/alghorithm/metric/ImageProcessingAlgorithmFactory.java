@@ -5,21 +5,21 @@
 
 package com.rgosiewski.frameiq.alghorithm.metric;
 
-import com.rgosiewski.frameiq.alghorithm.configuration.ImageProcessingConfiguration;
+import com.rgosiewski.frameiq.alghorithm.enums.Metrics;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ImageProcessingAlgorithmFactory {
     // try injecting database services for storing results
 
-    public static ImageProcessingAlgorithm getImageProcessingAlgorithm(ImageProcessingConfiguration configuration) {
-        switch (configuration.getMetric()) {
+    public static ImageProcessingAlgorithm getImageProcessingAlgorithm(Metrics metric) {
+        switch (metric) {
             case FOCAL_MESURE_SCORE:
-                return new LaplacianMetric(configuration.getImagePath(), configuration.getTreshold());
+                return new LaplacianMetric();
             case FAST_FOURIER_TRANSFORM_SCORE:
-                return new FastFourierTransformMetric(configuration.getImagePath());
+                return new FastFourierTransformMetric();
             default:
-                return new LaplacianMetric(configuration.getImagePath(), configuration.getTreshold());
+                return new LaplacianMetric();
         }
     }
 }

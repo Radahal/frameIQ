@@ -19,14 +19,9 @@ import java.util.List;
 
 public class FastFourierTransformMetric extends ImageProcessingAlgorithm {
     private final Logger logger = LogManager.getLogger(FastFourierTransformMetric.class);
-    private final Path imagePath;
-
-    public FastFourierTransformMetric(Path imagePath) {
-        this.imagePath = imagePath;
-    }
 
     @Override
-    public double calculateMetric() {
+    public double calculateMetric(Path imagePath) {
         OpenCV.loadLocally();
         Mat image = Imgcodecs.imread(imagePath.toString());
         Mat imageGrey = new Mat();
@@ -34,7 +29,6 @@ public class FastFourierTransformMetric extends ImageProcessingAlgorithm {
         try {
             if (!image.empty()) {
                 Imgproc.cvtColor(image, imageGrey, Imgproc.COLOR_RGBA2GRAY, 0);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("grey_"+imagePath.getFileName()).toString(), imageGrey);
                 // get optimal size of DFT
                 int optimalRows = Core.getOptimalDFTSize(imageGrey.rows());
                 int optimalCols = Core.getOptimalDFTSize(imageGrey.cols());
@@ -42,12 +36,10 @@ public class FastFourierTransformMetric extends ImageProcessingAlgorithm {
                 Mat padded = new Mat();
                 Core.copyMakeBorder(imageGrey, padded, 0, optimalRows - imageGrey.rows(), 0,
                         optimalCols - imageGrey.cols(  ), Core.BORDER_CONSTANT, s0);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("padded_"+imagePath.getFileName()).toString(), padded);
                 // use cv.MatVector to distribute space for real part and imaginary part
                 // MatVector is replaced with collection
                 Mat plane0 = new Mat();
                 padded.convertTo(plane0, CvType.CV_32F);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("plane0_"+imagePath.getFileName()).toString(), plane0);
                 List<Mat> planes = new LinkedList<>();
                 Mat complexI = new Mat();
                 Mat plane1 = Mat.zeros(padded.rows(), padded.cols(), CvType.CV_32F);
@@ -64,23 +56,16 @@ public class FastFourierTransformMetric extends ImageProcessingAlgorithm {
                 Mat splited = new Mat();
                 Mat magnitude = new Mat();
                 Core.split(splited, planes);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("splited_"+imagePath.getFileName()).toString(), splited);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("p0_"+imagePath.getFileName()).toString(), plane0);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("p1_"+imagePath.getFileName()).toString(), plane1);
                 Core.magnitude(planes.get(0), planes.get(1), magnitude);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("mag_"+imagePath.getFileName()).toString(), magnitude);
                 Mat m1 = Mat.ones(magnitude.rows(), magnitude.cols(), magnitude.type());
                 Mat magAdded = new Mat();
                 Core.add(magnitude, m1, magAdded);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("magAdded_"+imagePath.getFileName()).toString(), magAdded);
                 Mat magLog = new Mat();
                 Core.log(magAdded, magLog);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("magLog_"+imagePath.getFileName()).toString(), magLog);
                 // crop the spectrum, if it has an odd number of rows or columns
                 Rect roi = new Rect(0, 0, magLog.cols() & - 2, magLog.rows() & - 2);
                 Mat magRoi = new Mat();
                 magRoi = magLog.submat(roi);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("magRoi_"+imagePath.getFileName()).toString(), magRoi);
                 // rearrange the quadrants of Fourier image
                 // so that the origin is at the image center
                 int cx = magRoi.cols() / 2;
@@ -110,7 +95,6 @@ public class FastFourierTransformMetric extends ImageProcessingAlgorithm {
                 // The pixel value of cv.CV_32S type image ranges from 0 to 1.
                 Mat normalized = new Mat();
                 Core.normalize(magRoi, normalized, 0, 1, Core.NORM_MINMAX);
-                Imgcodecs.imwrite(imagePath.getParent().resolve("fft_"+imagePath.getFileName()).toString(), normalized);
                 logger.info("FFT for image {}: {}", imagePath.toString(), FFT);
             }
         } catch (Exception e) {

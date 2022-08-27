@@ -7,10 +7,7 @@ package com.rgosiewski.frameiq.database.implementation.model;
 
 import com.rgosiewski.frameiq.database.definition.model.IFrameMetadata;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,6 +15,7 @@ import java.util.Date;
 public class FrameMetadataEntity extends ModelEntity implements IFrameMetadata {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "frm_id")
     private long id;
 

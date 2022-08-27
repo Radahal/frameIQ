@@ -6,6 +6,7 @@
 package com.rgosiewski.frameiq.server.blueprint.facade;
 
 import com.rgosiewski.frameiq.database.implementation.service.BlueprintService;
+import com.rgosiewski.frameiq.server.blueprint.data.BlueprintData;
 import com.rgosiewski.frameiq.server.blueprint.dto.BlueprintDTO;
 import com.rgosiewski.frameiq.server.blueprint.dto.CreateBlueprintDTO;
 import com.rgosiewski.frameiq.server.blueprint.populator.BlueprintDTOFromBlueprintDataPopulator;
@@ -32,8 +33,9 @@ public class BlueprintFacade {
         return fromBlueprintDataPopulator.populate(blueprintService.getBlueprint(blueprintId));
     }
 
-    public List<BlueprintDTO> listBlueprints(Long projectId) {
-        return fromBlueprintDataPopulator.populateAll(blueprintService.listBlueprints(projectId));
+    public List<BlueprintDTO> listBlueprints(Long configurationId) {
+        List<BlueprintData> blueprintData = blueprintService.listBlueprints(configurationId);
+        return fromBlueprintDataPopulator.populateAll(blueprintData);
     }
 
     public BlueprintDTO createBlueprint(Long projectId, CreateBlueprintDTO createBlueprintDTO) {

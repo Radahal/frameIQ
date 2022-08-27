@@ -8,6 +8,7 @@ package com.rgosiewski.frameiq.server.movie.controller;
 import com.rgosiewski.frameiq.server.movie.dto.EditMovieDTO;
 import com.rgosiewski.frameiq.server.movie.dto.MovieDTO;
 import com.rgosiewski.frameiq.server.movie.facade.MovieFacade;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class MovieController {
 
     @PatchMapping("/{movieId}")
     public MovieDTO editMovie(@PathVariable Long movieId,
-                              @RequestBody EditMovieDTO editMovieDTO) {
+                              @RequestBody @Validated EditMovieDTO editMovieDTO) {
         return movieFacade.editMovie(movieId, editMovieDTO);
     }
 

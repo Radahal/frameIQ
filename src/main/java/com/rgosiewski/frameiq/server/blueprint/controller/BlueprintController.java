@@ -10,12 +10,13 @@ import com.rgosiewski.frameiq.server.blueprint.dto.CreateBlueprintDTO;
 import com.rgosiewski.frameiq.server.blueprint.facade.BlueprintFacade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("projects/{projectId}/blueprints/")
+@RequestMapping("projects/{projectId}/")
 public class BlueprintController {
     private final Logger logger = LogManager.getLogger(BlueprintController.class);
     private final BlueprintFacade blueprintFacade;
@@ -24,19 +25,19 @@ public class BlueprintController {
         this.blueprintFacade = blueprintFacade;
     }
 
-    @GetMapping
-    public List<BlueprintDTO> listBlueprints(@PathVariable Long projectId) {
-        return blueprintFacade.listBlueprints(projectId);
+    @GetMapping("/configurations/{configurationId}/blueprints")
+    public List<BlueprintDTO> listBlueprints(@PathVariable Long configurationId) {
+        return blueprintFacade.listBlueprints(configurationId);
     }
 
-    @GetMapping("/{blueprintId}")
+    @GetMapping("/configurations/{configurationId}/blueprints/{blueprintId}")
     public BlueprintDTO getBlueprint(@PathVariable Long blueprintId) {
         return blueprintFacade.getBlueprint(blueprintId);
     }
 
-    @PutMapping
+    @PutMapping("/configurations/{configurationId}/blueprints/}")
     public BlueprintDTO createBlueprint(@PathVariable Long projectId,
-                                      @RequestBody CreateBlueprintDTO createBlueprintDTO) {
+                                      @RequestBody @Validated CreateBlueprintDTO createBlueprintDTO) {
         return blueprintFacade.createBlueprint(projectId, createBlueprintDTO);
     }
 }

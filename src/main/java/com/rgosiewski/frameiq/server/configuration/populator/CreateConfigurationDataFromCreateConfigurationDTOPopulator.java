@@ -12,7 +12,11 @@ import com.rgosiewski.frameiq.server.configuration.dto.CreateConfigurationDTO;
 
 @Populator
 public class CreateConfigurationDataFromCreateConfigurationDTOPopulator extends ByIdDataPopulator<CreateConfigurationDTO, CreateConfigurationData> {
+    private final AlgorithmPropertiesDataFromAlgorithmPropertiesDTOPopulator fromAlgorithmPropertiesDTOPopulator;
 
+    public CreateConfigurationDataFromCreateConfigurationDTOPopulator(AlgorithmPropertiesDataFromAlgorithmPropertiesDTOPopulator fromAlgorithmPropertiesDTOPopulator) {
+        this.fromAlgorithmPropertiesDTOPopulator = fromAlgorithmPropertiesDTOPopulator;
+    }
 
     @Override
     public CreateConfigurationData populate(Long sourceId, CreateConfigurationDTO createConfigurationDTO) {
@@ -21,10 +25,7 @@ public class CreateConfigurationDataFromCreateConfigurationDTOPopulator extends 
                 .withName(createConfigurationDTO.getName())
                 .withDescription(createConfigurationDTO.getDescription())
                 .withTag(createConfigurationDTO.getTag())
-                .withInputFilename(createConfigurationDTO.getInputFilename())
-                .withAlgorithm(createConfigurationDTO.getAlgorithm())
-                .withAlgorithmProperties(createConfigurationDTO.getAlgorithmProperties())
-                .withStrategy(createConfigurationDTO.getStrategy())
+                .withAlgorithmProperties(fromAlgorithmPropertiesDTOPopulator.populate(createConfigurationDTO.getAlgorithmProperties()))
                 .build();
     }
 }

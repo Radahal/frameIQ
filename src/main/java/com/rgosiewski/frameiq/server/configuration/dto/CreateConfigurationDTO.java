@@ -5,28 +5,27 @@
 
 package com.rgosiewski.frameiq.server.configuration.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.sun.istack.NotNull;
+
+@ValueObject
 public class CreateConfigurationDTO {
+    @NotNull
     private final String name;
     private final String description;
     private final String tag;
-    private final String inputFilename;
-    private final String algorithm;
-    private final String algorithmProperties;
-    private final String strategy;
+    @NotNull
+    private final AlgorithmPropertiesDTO algorithmProperties;
 
-    public CreateConfigurationDTO(String name,
-                                  String description, String tag,
-                                  String inputFilename,
-                                  String algorithm,
-                                  String algorithmProperties,
-                                  String strategy) {
+    public CreateConfigurationDTO(@JsonProperty("name") String name,
+                                  @JsonProperty("description") String description,
+                                  @JsonProperty("tag") String tag,
+                                  @JsonProperty("algorithmProperties") AlgorithmPropertiesDTO algorithmProperties) {
         this.name = name;
         this.description = description;
         this.tag = tag;
-        this.inputFilename = inputFilename;
-        this.algorithm = algorithm;
         this.algorithmProperties = algorithmProperties;
-        this.strategy = strategy;
     }
 
     public String getName() {
@@ -41,20 +40,8 @@ public class CreateConfigurationDTO {
         return tag;
     }
 
-    public String getInputFilename() {
-        return inputFilename;
-    }
-
-    public String getAlgorithm() {
-        return algorithm;
-    }
-
-    public String getAlgorithmProperties() {
+    public AlgorithmPropertiesDTO getAlgorithmProperties() {
         return algorithmProperties;
-    }
-
-    public String getStrategy() {
-        return strategy;
     }
 
     public static Builder builder() {
@@ -65,10 +52,7 @@ public class CreateConfigurationDTO {
         private String name;
         private String description;
         private String tag;
-        private String inputFilename;
-        private String algorithm;
-        private String algorithmProperties;
-        private String strategy;
+        private AlgorithmPropertiesDTO algorithmProperties;
 
         public Builder withName(String name) {
             this.name = name;
@@ -85,28 +69,13 @@ public class CreateConfigurationDTO {
             return this;
         }
 
-        public Builder withInputFilename(String inputFilename) {
-            this.inputFilename = inputFilename;
-            return this;
-        }
-
-        public Builder withAlgorithm(String algorithm) {
-            this.algorithm = algorithm;
-            return this;
-        }
-
-        public Builder withAlgorithmProperties(String algorithmProperties) {
+        public Builder withAlgorithmProperties(AlgorithmPropertiesDTO algorithmProperties) {
             this.algorithmProperties = algorithmProperties;
             return this;
         }
 
-        public Builder withStrategy(String strategy) {
-            this.strategy = strategy;
-            return this;
-        }
-
         public CreateConfigurationDTO build() {
-            return new CreateConfigurationDTO(name, description, tag, inputFilename, algorithm, algorithmProperties, strategy);
+            return new CreateConfigurationDTO(name, description, tag, algorithmProperties);
         }
     }
 }

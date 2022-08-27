@@ -10,4 +10,6 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 
     public List<MovieEntity> findAllByBlueprintId(Long blueprintId);
+
+    public MovieEntity findByName(String name);
 }

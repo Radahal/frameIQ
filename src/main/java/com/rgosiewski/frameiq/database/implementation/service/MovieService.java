@@ -15,16 +15,23 @@ import java.util.List;
 @Service
 public class MovieService implements IMovieService {
     private final MovieRepository movieRepository;
+    private final UserService userService;
     private final MovieDataFromMovieEntityPopulator fromMovieEntityPopulator;
 
-    public MovieService(MovieRepository movieRepository, MovieDataFromMovieEntityPopulator fromMovieEntityPopulator) {
+    public MovieService(MovieRepository movieRepository, UserService userService, MovieDataFromMovieEntityPopulator fromMovieEntityPopulator) {
         this.movieRepository = movieRepository;
+        this.userService = userService;
         this.fromMovieEntityPopulator = fromMovieEntityPopulator;
     }
 
     @Override
     public MovieData getMovie(Long movieId) {
         return fromMovieEntityPopulator.populate(movieRepository.getById(movieId));
+    }
+
+    @Override
+    public MovieData findByName(String name) {
+        return fromMovieEntityPopulator.populate(movieRepository.findByName(name));
     }
 
     @Override
@@ -40,6 +47,8 @@ public class MovieService implements IMovieService {
         entity.setDescription(createMovieData.getDescription());
         entity.setCreationTime(new Date());
         entity.setModificationTime(new Date());
+        entity.setCreationUsId(userService.getAdminId());
+        entity.setModificationUsId(userService.getAdminId());
         return fromMovieEntityPopulator.populate(movieRepository.saveAndFlush(entity));
     }
 
@@ -49,6 +58,7 @@ public class MovieService implements IMovieService {
         entity.setName(editMovieData.getName());
         entity.setDescription(editMovieData.getDescription());
         entity.setModificationTime(new Date());
+        entity.setModificationUsId(userService.getAdminId());
         return fromMovieEntityPopulator.populate(movieRepository.saveAndFlush(entity));
     }
 }

@@ -5,20 +5,30 @@
 
 package com.rgosiewski.frameiq.server.metadata.frameMetadata.data;
 
+import com.rgosiewski.frameiq.alghorithm.model.FrameProcessedMetadata;
+
 public class CreateFrameMetadataData {
     private final Long frameId;
-    private final String metadata;
+    private final Long exifMetadataId;
+    private final FrameProcessedMetadata metadata;
 
-    public CreateFrameMetadataData(Long frameId, String metadata) {
+    public CreateFrameMetadataData(Long frameId,
+                                   Long exifMetadataId,
+                                   FrameProcessedMetadata metadata) {
         this.frameId = frameId;
+        this.exifMetadataId = exifMetadataId;
         this.metadata = metadata;
     }
 
-     public Long getFrameId() {
+    public Long getFrameId() {
         return frameId;
     }
 
-    public String getMetadata() {
+    public Long getExifMetadataId() {
+        return exifMetadataId;
+    }
+
+    public FrameProcessedMetadata getMetadata() {
         return metadata;
     }
 
@@ -28,21 +38,26 @@ public class CreateFrameMetadataData {
 
     public static final class Builder {
         private Long frameId;
-        private String metadata;
-
+        private Long exifMetadataId;
+        private FrameProcessedMetadata metadata;
 
         public Builder withFrameId(Long frameId) {
             this.frameId = frameId;
             return this;
         }
 
-        public Builder withMetadata(String metadata) {
+        public Builder withExifMetadataId(Long exifMetadataId) {
+            this.exifMetadataId = exifMetadataId;
+            return this;
+        }
+
+        public Builder withMetadata(FrameProcessedMetadata metadata) {
             this.metadata = metadata;
             return this;
         }
 
         public CreateFrameMetadataData build() {
-            return new CreateFrameMetadataData(frameId, metadata);
+            return new CreateFrameMetadataData(frameId, exifMetadataId, metadata);
         }
 
     }

@@ -5,6 +5,8 @@
 
 package com.rgosiewski.frameiq.alghorithm.metric;
 
+import java.nio.file.Path;
+
 public abstract class ImageProcessingAlgorithm {
-    public abstract double calculateMetric();
+    public abstract double calculateMetric(Path imagePath);
 }

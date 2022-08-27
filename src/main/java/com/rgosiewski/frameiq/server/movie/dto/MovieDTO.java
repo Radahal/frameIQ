@@ -5,20 +5,27 @@
 
 package com.rgosiewski.frameiq.server.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 
 import java.util.Date;
 
+@ValueObject
 public class MovieDTO extends IDTO {
     private final Long blueprintId;
     private final String name;
     private final String description;
 
-    public MovieDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                     Long blueprintId,
-                     String name,
-                     String description) {
+    public MovieDTO(@JsonProperty("id") Long id,
+                    @JsonProperty("creationUsId") Long creationUsId,
+                    @JsonProperty("modificationUsId") Long modificationUsId,
+                    @JsonProperty("creationTime") Date creationTime,
+                    @JsonProperty("modificationTime") Date modificationTime,
+                    @JsonProperty("blueprintId") Long blueprintId,
+                    @JsonProperty("name") String name,
+                    @JsonProperty("description") String description) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.blueprintId = blueprintId;
         this.name = name;

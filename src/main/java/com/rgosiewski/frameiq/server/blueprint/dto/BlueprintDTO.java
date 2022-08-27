@@ -5,36 +5,35 @@
 
 package com.rgosiewski.frameiq.server.blueprint.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.configuration.dto.AlgorithmPropertiesDTO;
 
 import java.util.Date;
 
+@ValueObject
 public class BlueprintDTO extends IDTO {
     private final Long configurationId;
     private final String name;
     private final String tag;
-    private final String inputFilename;
-    private final String algorithm;
-    private final String algorithmProperties;
-    private final String strategy;
+    private final AlgorithmPropertiesDTO algorithmProperties;
 
-    public BlueprintDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                        Long configurationId,
-                        String name,
-                        String tag,
-                        String inputFilename,
-                        String algorithm,
-                        String algorithmProperties,
-                        String strategy) {
+    public BlueprintDTO(@JsonProperty("id") Long id,
+                        @JsonProperty("creationUsId") Long creationUsId,
+                        @JsonProperty("modificationUsId") Long modificationUsId,
+                        @JsonProperty("creationTime") Date creationTime,
+                        @JsonProperty("modificationTime") Date modificationTime,
+                        @JsonProperty("configurationId") Long configurationId,
+                        @JsonProperty("name") String name,
+                        @JsonProperty("tag") String tag,
+                        @JsonProperty("algorithmProperties") AlgorithmPropertiesDTO algorithmProperties) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.configurationId = configurationId;
         this.name = name;
         this.tag = tag;
-        this.inputFilename = inputFilename;
-        this.algorithm = algorithm;
         this.algorithmProperties = algorithmProperties;
-        this.strategy = strategy;
     }
 
     public Long getConfigurationId() {
@@ -49,20 +48,8 @@ public class BlueprintDTO extends IDTO {
         return tag;
     }
 
-    public String getInputFilename() {
-        return inputFilename;
-    }
-
-    public String getAlgorithm() {
-        return algorithm;
-    }
-
-    public String getAlgorithmProperties() {
+    public AlgorithmPropertiesDTO getAlgorithmProperties() {
         return algorithmProperties;
-    }
-
-    public String getStrategy() {
-        return strategy;
     }
 
     public static Builder builder() {
@@ -73,10 +60,7 @@ public class BlueprintDTO extends IDTO {
         private Long configurationId;
         private String name;
         private String tag;
-        private String inputFilename;
-        private String algorithm;
-        private String algorithmProperties;
-        private String strategy;
+        private AlgorithmPropertiesDTO algorithmProperties;
 
         public Builder withConfigurationId(Long configurationId) {
             this.configurationId = configurationId;
@@ -93,23 +77,8 @@ public class BlueprintDTO extends IDTO {
             return this;
         }
 
-        public Builder withInputFilename(String inputFilename) {
-            this.inputFilename = inputFilename;
-            return this;
-        }
-
-        public Builder withAlgorithm(String algorithm) {
-            this.algorithm = algorithm;
-            return this;
-        }
-
-        public Builder withAlgorithmProperties(String algorithmProperties) {
+        public Builder withAlgorithmProperties(AlgorithmPropertiesDTO algorithmProperties) {
             this.algorithmProperties = algorithmProperties;
-            return this;
-        }
-
-        public Builder withStrategy(String strategy) {
-            this.strategy = strategy;
             return this;
         }
 
@@ -139,7 +108,7 @@ public class BlueprintDTO extends IDTO {
         }
 
         public BlueprintDTO build() {
-            return new BlueprintDTO(id, creationUsId, modificationUsId, creationTime, modificationTime, configurationId, name, tag, inputFilename, algorithm, algorithmProperties, strategy);
+            return new BlueprintDTO(id, creationUsId, modificationUsId, creationTime, modificationTime, configurationId, name, tag, algorithmProperties);
         }
     }
 }

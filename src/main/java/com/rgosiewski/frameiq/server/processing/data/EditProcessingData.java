@@ -7,15 +7,19 @@ package com.rgosiewski.frameiq.server.processing.data;
 
 import com.rgosiewski.frameiq.server.processing.enums.ProcessingStates;
 
+import java.util.Date;
+
 public class EditProcessingData {
     private final Long id;
     private final Long blueprintId;
     private final ProcessingStates state;
+    private final Date endTime;
 
-    public EditProcessingData(Long id, Long blueprintId, ProcessingStates state) {
+    public EditProcessingData(Long id, Long blueprintId, ProcessingStates state, Date endTime) {
         this.id = id;
         this.blueprintId = blueprintId;
         this.state = state;
+        this.endTime = endTime;
     }
 
     public Long getId() {
@@ -30,6 +34,10 @@ public class EditProcessingData {
         return state;
     }
 
+    public Date getEndTime() {
+        return endTime;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -38,6 +46,7 @@ public class EditProcessingData {
         private Long id;
         private Long blueprintId;
         private ProcessingStates state;
+        private Date endTime;
 
         public Builder withId(Long id) {
             this.id = id;
@@ -54,8 +63,13 @@ public class EditProcessingData {
             return this;
         }
 
+        public Builder withEndTime(Date endTime) {
+            this.endTime = endTime;
+            return this;
+        }
+
         public EditProcessingData build() {
-            return new EditProcessingData(id, blueprintId, state);
+            return new EditProcessingData(id, blueprintId, state, endTime);
         }
 
     }

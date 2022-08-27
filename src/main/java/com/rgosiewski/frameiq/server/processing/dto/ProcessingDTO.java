@@ -5,23 +5,30 @@
 
 package com.rgosiewski.frameiq.server.processing.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 import com.rgosiewski.frameiq.server.processing.enums.ProcessingStates;
 
 import java.util.Date;
 
+@ValueObject
 public class ProcessingDTO extends IDTO {
     private final Long blueprintId;
     private final ProcessingStates state;
     private final Date startTime;
     private final Date endTime;
 
-    public ProcessingDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                          Long blueprintId,
-                          ProcessingStates state,
-                          Date startTime,
-                          Date endTime) {
+    public ProcessingDTO(@JsonProperty("id") Long id,
+                         @JsonProperty("creationUsId") Long creationUsId,
+                         @JsonProperty("modificationUsId") Long modificationUsId,
+                         @JsonProperty("creationTime") Date creationTime,
+                         @JsonProperty("modificationTime") Date modificationTime,
+                         @JsonProperty("blueprintId") Long blueprintId,
+                         @JsonProperty("state") ProcessingStates state,
+                         @JsonProperty("startTime") Date startTime,
+                         @JsonProperty("endTime") Date endTime) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.blueprintId = blueprintId;
         this.state = state;

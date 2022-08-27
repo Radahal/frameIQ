@@ -19,4 +19,10 @@ public interface IProcessingService {
     public ProcessingData createProcessing(CreateProcessingData createProcessingData);
 
     public ProcessingData editProcessing(EditProcessingData editProcessingData);
+
+    public ProcessingData startProcessing(Long blueprintId);
+
+    public ProcessingData finishProcessing(Long processingId, Long blueprintId);
+
+    public ProcessingData abortProcessing(Long processingId, Long blueprintId);
 }

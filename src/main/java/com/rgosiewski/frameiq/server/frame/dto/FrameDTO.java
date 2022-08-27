@@ -5,22 +5,29 @@
 
 package com.rgosiewski.frameiq.server.frame.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 
 import java.util.Date;
 
+@ValueObject
 public class FrameDTO extends IDTO {
     private final Long movieId;
     private final Integer ordinal;
     private final String name;
     private final String description;;
 
-    public FrameDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                    Long movieId,
-                    Integer ordinal,
-                    String name,
-                    String description) {
+    public FrameDTO(@JsonProperty("id") Long id,
+                    @JsonProperty("creationUsId") Long creationUsId,
+                    @JsonProperty("modificationUsId") Long modificationUsId,
+                    @JsonProperty("creationTime") Date creationTime,
+                    @JsonProperty("modificationTime") Date modificationTime,
+                    @JsonProperty("movieId") Long movieId,
+                    @JsonProperty("ordinal") Integer ordinal,
+                    @JsonProperty("name") String name,
+                    @JsonProperty("description") String description) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.movieId = movieId;
         this.ordinal = ordinal;

@@ -5,14 +5,18 @@
 
 package com.rgosiewski.frameiq.server.frame.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+
+@ValueObject
 public class CreateFrameDTO {
     private final Integer ordinal;
     private final String name;
     private final String description;
 
-    public CreateFrameDTO(Integer ordinal,
-                          String name,
-                          String description) {
+    public CreateFrameDTO(@JsonProperty("ordinal") Integer ordinal,
+                          @JsonProperty("name") String name,
+                          @JsonProperty("description") String description) {
         this.ordinal = ordinal;
         this.name = name;
         this.description = description;

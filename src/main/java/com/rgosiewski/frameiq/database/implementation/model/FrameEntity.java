@@ -19,6 +19,9 @@ public class FrameEntity extends ModelEntity implements IFrame {
     @Column(name = "fr_id")
     private int id;
 
+    @Column(name = "fr_proc_id")
+    private long processingId;
+
     @Column(name = "fr_creation_us_id")
     private long creationUsId;
 
@@ -46,6 +49,16 @@ public class FrameEntity extends ModelEntity implements IFrame {
     @Override
     public long getId() {
         return id;
+    }
+
+    @Override
+    public long getProcessingId() {
+        return processingId;
+    }
+
+    @Override
+    public void setProcessingId(Long processingId) {
+        this.processingId = processingId;
     }
 
     @Override

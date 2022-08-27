@@ -88,10 +88,10 @@ public class ConfigurationFacade {
             switch (strategy) {
                 case SPLIT_VIDEO:
                     MovieData movieData = videoSplitter.processVideo(blueprint, configuration);
-                    frameReader.processNewFrames(movieData, configuration);
+                    frameReader.processNewFrames(processingData.getId(), movieData, configuration);
                     break;
                 case PROCESS_FRAMES:
-                    frameReader.processExistingFrames(configuration);
+                    frameReader.processExistingFrames(processingData.getId(), configuration);
             }
             processingService.finishProcessing(processingData.getId(), blueprint.getId());
         } catch (RuntimeException e) {

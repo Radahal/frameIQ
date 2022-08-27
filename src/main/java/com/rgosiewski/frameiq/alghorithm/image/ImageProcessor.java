@@ -35,6 +35,7 @@ public class ImageProcessor implements Runnable {
     private final ExifMetadataService exifMetadataService;
     private final ImageExifReader imageExifReader;
     private final Long movieId;
+    private final Long processingId;
     private final File image;
     private final AlgorithmPropertiesData algorithmProperties;
 
@@ -43,6 +44,7 @@ public class ImageProcessor implements Runnable {
                           ExifMetadataService exifMetadataService,
                           ImageExifReader imageExifReader,
                           Long movieId,
+                          Long processingId,
                           File image,
                           AlgorithmPropertiesData algorithmProperties) {
         this.frameService = frameService;
@@ -50,6 +52,7 @@ public class ImageProcessor implements Runnable {
         this.exifMetadataService = exifMetadataService;
         this.imageExifReader = imageExifReader;
         this.movieId = movieId;
+        this.processingId = processingId;
         this.image = image;
         this.algorithmProperties = algorithmProperties;
     }
@@ -78,6 +81,7 @@ public class ImageProcessor implements Runnable {
         return frameService.createFrame(CreateFrameData.builder()
                 .withOrdinal(Integer.valueOf(imageFilename.substring(0, imageFilename.lastIndexOf('.'))))
                 .withMovieId(movieId)
+                .withProcessingId(processingId)
                 .withName(imageFilename)
                 .withDescription(String.format(DEFAULT_FRAME_DESCRIPTION, imageFilename, movieId, algorithmProperties.getMetric()))
                 .build());

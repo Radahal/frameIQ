@@ -19,7 +19,8 @@ public class FrameService implements IFrameService {
     private final FrameDataFromFrameEntityPopulator fromFrameEntityPopulator;
 
     public FrameService(FrameRepository frameRepository,
-                        UserService userService, FrameDataFromFrameEntityPopulator fromFrameEntityPopulator) {
+                        UserService userService,
+                        FrameDataFromFrameEntityPopulator fromFrameEntityPopulator) {
         this.frameRepository = frameRepository;
         this.userService = userService;
         this.fromFrameEntityPopulator = fromFrameEntityPopulator;
@@ -39,6 +40,7 @@ public class FrameService implements IFrameService {
     public FrameData createFrame(CreateFrameData createFrameData) {
         FrameEntity entity = new FrameEntity();
         entity.setMovieId(createFrameData.getMovieId());
+        entity.setProcessingId(createFrameData.getProcessingId());
         entity.setName(createFrameData.getName());
         entity.setOrdinal(createFrameData.getOrdinal());
         entity.setDescription(createFrameData.getDescription());

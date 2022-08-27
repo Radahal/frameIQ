@@ -46,24 +46,24 @@ public class FrameReader {
         this.projectService = projectService;
     }
 
-    public void processNewFrames(MovieData movieData, ConfigurationData configurationData) {
+    public void processNewFrames(Long processingId, MovieData movieData, ConfigurationData configurationData) {
         ProjectData project = projectService.getProject(configurationData.getProjectId());
         List<File> files = workspace.listProjectFilesByFileExtension(project.getName(), configurationData.getAlgorithmProperties().getFileExtension());
-        processFrames(files, movieData.getId(), configurationData.getAlgorithmProperties());
+        processFrames(files, movieData.getId(), processingId, configurationData.getAlgorithmProperties());
     }
 
-    public void processExistingFrames(ConfigurationData configurationData) {
+    public void processExistingFrames(Long processingId, ConfigurationData configurationData) {
         String movieName = configurationData.getAlgorithmProperties().getVideoPath().getFileName().toString();
         MovieData movieData = movieService.findByName(movieName);
 
         ProjectData project = projectService.getProject(configurationData.getProjectId());
         List<File> files = workspace.listProjectFilesByFileExtension(project.getName(), configurationData.getAlgorithmProperties().getFileExtension());
-        processFrames(files, movieData.getId(), configurationData.getAlgorithmProperties());
+        processFrames(files, movieData.getId(), processingId, configurationData.getAlgorithmProperties());
     }
 
-    private void processFrames(List<File> files, Long movieId, AlgorithmPropertiesData algorithmProperties) {
+    private void processFrames(List<File> files, Long movieId, Long processingId, AlgorithmPropertiesData algorithmProperties) {
         for (File file : files) {
-            ImageProcessor imageProcessor = new ImageProcessor(frameService, frameMetadataService, exifMetadataService, imageExifReader, movieId, file, algorithmProperties);
+            ImageProcessor imageProcessor = new ImageProcessor(frameService, frameMetadataService, exifMetadataService, imageExifReader, movieId, processingId, file, algorithmProperties);
             imageProcessor.run();
         }
         logger.log(Level.INFO, "All frames has been processed");

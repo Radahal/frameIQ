@@ -11,6 +11,7 @@ import com.rgosiewski.frameiq.server.configuration.dto.EditConfigurationDTO;
 import com.rgosiewski.frameiq.server.configuration.facade.ConfigurationFacade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,15 +36,20 @@ public class ConfigurationController {
         return configurationFacade.getConfiguration(configurationId);
     }
 
+    @GetMapping("/{configurationId}/run")
+    public void runConfiguration(@PathVariable Long configurationId) {
+        configurationFacade.runConfiguration(configurationId);
+    }
+
     @PutMapping
     public ConfigurationDTO createConfiguration(@PathVariable Long projectId,
-                                      @RequestBody CreateConfigurationDTO createConfigurationDTO) {
+                                      @RequestBody @Validated CreateConfigurationDTO createConfigurationDTO) {
         return configurationFacade.createConfiguration(projectId, createConfigurationDTO);
     }
 
     @PatchMapping("/{configurationId}")
     public ConfigurationDTO editConfiguration(@PathVariable Long configurationId,
-                                    @RequestBody EditConfigurationDTO editConfigurationDTO) {
+                                    @RequestBody @Validated EditConfigurationDTO editConfigurationDTO) {
         return configurationFacade.editConfiguration(configurationId, editConfigurationDTO);
     }
 

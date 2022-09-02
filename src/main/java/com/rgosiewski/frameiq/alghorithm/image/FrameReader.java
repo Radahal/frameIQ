@@ -5,54 +5,68 @@
 
 package com.rgosiewski.frameiq.alghorithm.image;
 
-import com.rgosiewski.frameiq.alghorithm.configuration.ImageProcessingConfiguration;
-import com.rgosiewski.frameiq.alghorithm.enums.Metrics;
-import com.rgosiewski.frameiq.workspace.enums.FileExtensions;
+import com.rgosiewski.frameiq.database.implementation.service.*;
+import com.rgosiewski.frameiq.server.configuration.data.AlgorithmPropertiesData;
+import com.rgosiewski.frameiq.server.configuration.data.ConfigurationData;
+import com.rgosiewski.frameiq.server.movie.data.MovieData;
+import com.rgosiewski.frameiq.server.project.data.ProjectData;
+import com.rgosiewski.frameiq.workspace.management.Workspace;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.util.Objects;
+import java.util.List;
 
 @Service
 public class FrameReader {
+    private static final Logger logger = LogManager.getLogger(FrameReader.class);
+    private final FrameService frameService;
+    private final FrameMetadataService frameMetadataService;
+    private final ExifMetadataService exifMetadataService;
+    private final MovieService movieService;
     private final ImageExifReader imageExifReader;
+    private final Workspace workspace;
+    private final ProjectService projectService;
 
-    public FrameReader(ImageExifReader imageExifReader) {
+    public FrameReader(FrameService frameService,
+                       FrameMetadataService frameMetadataService,
+                       ExifMetadataService exifMetadataService,
+                       MovieService movieService,
+                       ImageExifReader imageExifReader,
+                       Workspace workspace,
+                       ProjectService projectService) {
+        this.frameService = frameService;
+        this.frameMetadataService = frameMetadataService;
+        this.exifMetadataService = exifMetadataService;
+        this.movieService = movieService;
         this.imageExifReader = imageExifReader;
+        this.workspace = workspace;
+        this.projectService = projectService;
     }
 
-    public void processFrames(Path projectPath, Metrics metric) {
-        File[] files = Objects.requireNonNull(projectPath.toFile().listFiles());
-        FileExtensions extension = FileExtensions.getByFilename(files[0].getName());
-        int frameCount = files.length;
-        processFrames(files, metric, 70.0);
+    public void processNewFrames(Long processingId, MovieData movieData, ConfigurationData configurationData) {
+        ProjectData project = projectService.getProject(configurationData.getProjectId());
+        List<File> files = workspace.listProjectFilesByFileExtension(project.getName(), configurationData.getAlgorithmProperties().getFileExtension());
+        processFrames(files, movieData.getId(), processingId, configurationData.getAlgorithmProperties());
     }
 
-    private void processFrames(Path projectPath, int frameCount, FileExtensions imageExtension, Metrics metric, double treshold) {
-        for (int frame = 1; frame <= frameCount; frame+=1) {
-            Path framePath = projectPath.resolve(frame+"."+imageExtension.getExtension());
-            ImageProcessor imageProcessor = new ImageProcessor(imageExifReader, getImageProcessingConfiguration(framePath, imageExtension, metric, treshold));
-            imageProcessor.run();
-        }
+    public void processExistingFrames(Long processingId, ConfigurationData configurationData) {
+        String movieName = configurationData.getAlgorithmProperties().getVideoPath().getFileName().toString();
+        MovieData movieData = movieService.findByName(movieName);
+
+        ProjectData project = projectService.getProject(configurationData.getProjectId());
+        List<File> files = workspace.listProjectFilesByFileExtension(project.getName(), configurationData.getAlgorithmProperties().getFileExtension());
+        processFrames(files, movieData.getId(), processingId, configurationData.getAlgorithmProperties());
     }
 
-
-    private void processFrames(File[] files, Metrics metric, double treshold) {
+    private void processFrames(List<File> files, Long movieId, Long processingId, AlgorithmPropertiesData algorithmProperties) {
         for (File file : files) {
-            FileExtensions fileExtension = FileExtensions.getByFilename(file.getName());
-            ImageProcessor imageProcessor = new ImageProcessor(imageExifReader, getImageProcessingConfiguration(file.toPath(), fileExtension, metric, treshold));
+            ImageProcessor imageProcessor = new ImageProcessor(frameService, frameMetadataService, exifMetadataService, imageExifReader, movieId, processingId, file, algorithmProperties);
             imageProcessor.run();
         }
-
+        logger.log(Level.INFO, "All frames has been processed");
     }
 
-    private ImageProcessingConfiguration getImageProcessingConfiguration(Path path, FileExtensions extensions, Metrics metrics, double treshold) {
-        return ImageProcessingConfiguration.builder()
-                .withImagePath(path)
-                .withImageExtension(extensions)
-                .withMetric(metrics)
-                .withTreshold(treshold)
-                .build();
-    }
 }

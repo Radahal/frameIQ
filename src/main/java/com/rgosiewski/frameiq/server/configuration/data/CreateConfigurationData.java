@@ -10,26 +10,18 @@ public class CreateConfigurationData {
     private final String name;
     private final String description;
     private final String tag;
-    private final String inputFilename;
-    private final String algorithm;
-    private final String algorithmProperties;
-    private final String strategy;
+    private final AlgorithmPropertiesData algorithmProperties;
 
     public CreateConfigurationData(Long projectId,
-                                   String name,
-                                   String description, String tag,
-                                   String inputFilename,
-                                   String algorithm,
-                                   String algorithmProperties,
-                                   String strategy) {
+                             String name,
+                             String description,
+                             String tag,
+                             AlgorithmPropertiesData algorithmProperties) {
         this.projectId = projectId;
         this.name = name;
         this.description = description;
         this.tag = tag;
-        this.inputFilename = inputFilename;
-        this.algorithm = algorithm;
         this.algorithmProperties = algorithmProperties;
-        this.strategy = strategy;
     }
 
     public Long getProjectId() {
@@ -48,35 +40,20 @@ public class CreateConfigurationData {
         return tag;
     }
 
-    public String getInputFilename() {
-        return inputFilename;
-    }
-
-    public String getAlgorithm() {
-        return algorithm;
-    }
-
-    public String getAlgorithmProperties() {
+    public AlgorithmPropertiesData getAlgorithmProperties() {
         return algorithmProperties;
-    }
-
-    public String getStrategy() {
-        return strategy;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public static class Builder {
+    public static final class Builder {
         private Long projectId;
         private String name;
         private String description;
         private String tag;
-        private String inputFilename;
-        private String algorithm;
-        private String algorithmProperties;
-        private String strategy;
+        private AlgorithmPropertiesData algorithmProperties;
 
         public Builder withProjectId(Long projectId) {
             this.projectId = projectId;
@@ -98,28 +75,13 @@ public class CreateConfigurationData {
             return this;
         }
 
-        public Builder withInputFilename(String inputFilename) {
-            this.inputFilename = inputFilename;
-            return this;
-        }
-
-        public Builder withAlgorithm(String algorithm) {
-            this.algorithm = algorithm;
-            return this;
-        }
-
-        public Builder withAlgorithmProperties(String algorithmProperties) {
+        public Builder withAlgorithmProperties(AlgorithmPropertiesData algorithmProperties) {
             this.algorithmProperties = algorithmProperties;
             return this;
         }
 
-        public Builder withStrategy(String strategy) {
-            this.strategy = strategy;
-            return this;
-        }
-
         public CreateConfigurationData build() {
-            return new CreateConfigurationData(projectId, name, description, tag, inputFilename, algorithm, algorithmProperties, strategy);
+            return new CreateConfigurationData(projectId, name, description, tag, algorithmProperties);
         }
     }
 }

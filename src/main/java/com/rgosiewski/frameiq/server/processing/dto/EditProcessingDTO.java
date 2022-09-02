@@ -5,13 +5,17 @@
 
 package com.rgosiewski.frameiq.server.processing.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 import com.rgosiewski.frameiq.server.processing.enums.ProcessingStates;
 
+@ValueObject
 public class EditProcessingDTO {
     private final Long blueprintId;
     private final ProcessingStates state;
 
-    public EditProcessingDTO(Long blueprintId, ProcessingStates state) {
+    public EditProcessingDTO(@JsonProperty("blueprintId") Long blueprintId,
+                             @JsonProperty("state") ProcessingStates state) {
         this.blueprintId = blueprintId;
         this.state = state;
     }

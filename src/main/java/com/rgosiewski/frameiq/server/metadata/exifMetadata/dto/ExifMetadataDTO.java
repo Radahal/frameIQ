@@ -5,16 +5,23 @@
 
 package com.rgosiewski.frameiq.server.metadata.exifMetadata.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 
 import java.util.Date;
 
+@ValueObject
 public class ExifMetadataDTO extends IDTO {
     private final String metadata;
 
-    public ExifMetadataDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                           String metadata) {
+    public ExifMetadataDTO(@JsonProperty("id") Long id,
+                           @JsonProperty("creationUsId") Long creationUsId,
+                           @JsonProperty("modificationUsId") Long modificationUsId,
+                           @JsonProperty("creationTime") Date creationTime,
+                           @JsonProperty("modificationTime") Date modificationTime,
+                           @JsonProperty("metadata") String metadata) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.metadata = metadata;
     }

@@ -5,56 +5,46 @@
 
 package com.rgosiewski.frameiq.alghorithm.video;
 
-import com.rgosiewski.frameiq.alghorithm.exception.ReadVideoException;
-import com.rgosiewski.frameiq.workspace.enums.FileExtensions;
-import nu.pattern.OpenCV;
+import com.rgosiewski.frameiq.database.implementation.service.MovieService;
+import com.rgosiewski.frameiq.database.implementation.service.ProjectService;
+import com.rgosiewski.frameiq.server.blueprint.data.BlueprintData;
+import com.rgosiewski.frameiq.server.configuration.data.ConfigurationData;
+import com.rgosiewski.frameiq.server.movie.data.CreateMovieData;
+import com.rgosiewski.frameiq.server.movie.data.MovieData;
+import com.rgosiewski.frameiq.server.project.data.ProjectData;
+import com.rgosiewski.frameiq.workspace.management.Workspace;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.videoio.VideoCapture;
-import org.opencv.videoio.Videoio;
+import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
 
-public class VideoSplitter implements Runnable {
-    private final Logger logger = LogManager.getLogger(VideoSplitter.class);
-    private final Path videoPath;
-    private final Path outputPath;
+@Service
+public class VideoSplitter {
+    private static final Logger logger = LogManager.getLogger(VideoSplitter.class);
+    private final ProjectService projectService;
+    private final MovieService movieService;
+    private final Workspace workspace;
 
-    public VideoSplitter(Path videoPath, Path outputPath) {
-        this.videoPath = videoPath;
-        this.outputPath = outputPath;
+    public VideoSplitter(ProjectService projectService,
+                         MovieService movieService,
+                         Workspace workspace) {
+        this.projectService = projectService;
+        this.movieService = movieService;
+        this.workspace = workspace;
     }
 
-    @Override
-    public void run() {
-        OpenCV.loadLocally();
-
-        VideoCapture videoCapture = new VideoCapture();
-        videoCapture.open(videoPath.toString());
-
-        int videoLength = (int) videoCapture.get(Videoio.CAP_PROP_FRAME_COUNT);
-        int FPS = (int) videoCapture.get(Videoio.CAP_PROP_FPS);
-
-        Mat frame = new Mat();
-        if (videoCapture.isOpened()) {
-            logger.log(Level.INFO, "Video {} is opened", videoPath.getFileName());
-            logger.log(Level.INFO, "Video has {} frames", videoLength);
-            logger.log(Level.INFO, "Video has {} FPS", FPS);
-            logger.log(Level.INFO, "Extracting frames...");
-
-            while (videoCapture.read(frame)) {
-                int frameNumber = (int) videoCapture.get(Videoio.CAP_PROP_POS_FRAMES);
-                logger.log(Level.DEBUG, "Processing frame {} from {}", frameNumber, videoPath.getFileName().toString());
-
-                Imgcodecs.imwrite(outputPath.resolve(frameNumber+"."+ FileExtensions.JPEG.getExtension()).toString(), frame);
-            }
-            videoCapture.release();
-            logger.log(Level.INFO, "{} frames extracted", videoLength);
-        } else {
-            throw new ReadVideoException(videoPath);
-        }
+    public MovieData processVideo(BlueprintData blueprintData, ConfigurationData configuration) {
+        ProjectData project = projectService.getProject(configuration.getProjectId());
+        Path projectPath = workspace.getOrCreateProjectPath(project.getName());
+        VideoProcessor videoProcessor = new VideoProcessor(configuration.getAlgorithmProperties(), projectPath);
+        videoProcessor.run();
+        logger.log(Level.INFO, "Video has been processed (frames has been extracted).");
+        return movieService.createMovie(CreateMovieData.builder()
+                .withBlueprintId(blueprintData.getConfigurationId())
+                .withName(configuration.getAlgorithmProperties().getVideoPath().getFileName().toString())
+                .withDescription(project.getName() + " - " + configuration.getAlgorithmProperties().getVideoPath().getFileName().toString())
+                .build());
     }
 }

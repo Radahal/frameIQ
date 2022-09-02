@@ -5,24 +5,34 @@
 
 package com.rgosiewski.frameiq.server.frame.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 
 import java.util.Date;
 
+@ValueObject
 public class FrameDTO extends IDTO {
     private final Long movieId;
+    private final Long processingId;
     private final Integer ordinal;
     private final String name;
     private final String description;;
 
-    public FrameDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                    Long movieId,
-                    Integer ordinal,
-                    String name,
-                    String description) {
+    public FrameDTO(@JsonProperty("id") Long id,
+                    @JsonProperty("creationUsId") Long creationUsId,
+                    @JsonProperty("modificationUsId") Long modificationUsId,
+                    @JsonProperty("creationTime") Date creationTime,
+                    @JsonProperty("modificationTime") Date modificationTime,
+                    @JsonProperty("movieId") Long movieId,
+                    @JsonProperty("processingId") Long processingId,
+                    @JsonProperty("ordinal") Integer ordinal,
+                    @JsonProperty("name") String name,
+                    @JsonProperty("description") String description) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.movieId = movieId;
+        this.processingId = processingId;
         this.ordinal = ordinal;
         this.name = name;
         this.description = description;
@@ -30,6 +40,10 @@ public class FrameDTO extends IDTO {
 
     public Long getMovieId() {
         return movieId;
+    }
+
+    public Long getProcessingId() {
+        return processingId;
     }
 
     public Integer getOrdinal() {
@@ -50,12 +64,18 @@ public class FrameDTO extends IDTO {
 
     public static final class Builder extends IDTOBuilder {
         private Long movieId;
+        private Long processingId;
         private Integer ordinal;
         private String name;
         private String description;
 
         public Builder withMovieId(Long movieId) {
             this.movieId = movieId;
+            return this;
+        }
+
+        public Builder withProcessingId(Long processingId) {
+            this.processingId = processingId;
             return this;
         }
 
@@ -99,9 +119,8 @@ public class FrameDTO extends IDTO {
             return this;
         }
 
-
         public FrameDTO build() {
-            return new FrameDTO(id, creationUsId, modificationUsId, creationTime, modificationTime, movieId, ordinal, name, description);
+            return new FrameDTO(id, creationUsId, modificationUsId, creationTime, modificationTime, movieId, processingId, ordinal, name, description);
         }
 
     }

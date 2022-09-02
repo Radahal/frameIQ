@@ -17,6 +17,7 @@ public class FrameDataFromFrameEntityPopulator extends DataPopulator<FrameEntity
     public FrameData populate(FrameEntity entity) {
         return FrameData.builder()
                 .withMovieId(entity.getMovieId())
+                .withProcessingId(entity.getProcessingId())
                 .withOrdinal(entity.getOrdinal())
                 .withName(entity.getName())
                 .withDescription(entity.getDescription())

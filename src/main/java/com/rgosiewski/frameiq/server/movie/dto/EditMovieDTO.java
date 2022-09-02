@@ -5,12 +5,16 @@
 
 package com.rgosiewski.frameiq.server.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+
+@ValueObject
 public class EditMovieDTO {
     private final String name;
     private final String description;
 
-    public EditMovieDTO(String name,
-                        String description) {
+    public EditMovieDTO(@JsonProperty("name") String name,
+                        @JsonProperty("description") String description) {
         this.name = name;
         this.description = description;
     }

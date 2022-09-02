@@ -5,10 +5,16 @@
 
 package com.rgosiewski.frameiq.server.blueprint.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.sun.istack.NotNull;
+
+@ValueObject
 public class CreateBlueprintDTO {
+    @NotNull
     private final Long configurationId;
 
-    public CreateBlueprintDTO(Long configurationId) {
+    public CreateBlueprintDTO(@JsonProperty("configurationId") Long configurationId) {
         this.configurationId = configurationId;
     }
 

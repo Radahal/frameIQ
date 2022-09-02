@@ -5,17 +5,25 @@
 
 package com.rgosiewski.frameiq.server.metadata.movieMetadata.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 
 import java.util.Date;
 
+@ValueObject
 public class MovieMetadataDTO extends IDTO {
     private final Long exifMetadataId;
     private final String metadata;
 
-    public MovieMetadataDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                            Long exifMetadataId, String metadata) {
+    public MovieMetadataDTO(@JsonProperty("id") Long id,
+                            @JsonProperty("creationUsId") Long creationUsId,
+                            @JsonProperty("modificationUsId") Long modificationUsId,
+                            @JsonProperty("creationTime") Date creationTime,
+                            @JsonProperty("modificationTime") Date modificationTime,
+                            @JsonProperty("exifMetadataId") Long exifMetadataId,
+                            @JsonProperty("metadata") String metadata) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.exifMetadataId = exifMetadataId;
         this.metadata = metadata;

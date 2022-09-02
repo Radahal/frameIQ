@@ -12,6 +12,11 @@ import com.rgosiewski.frameiq.server.configuration.dto.ConfigurationDTO;
 
 @Populator
 public class ConfigurationDTOFromConfigurationDataPopulator extends DataPopulator<ConfigurationData, ConfigurationDTO> {
+    private final AlgorithmPropertiesDTOFromAlgorithmPropertiesDataPopulator fromAlgorithmPropertiesDataPopulator;
+
+    public ConfigurationDTOFromConfigurationDataPopulator(AlgorithmPropertiesDTOFromAlgorithmPropertiesDataPopulator fromAlgorithmPropertiesDataPopulator) {
+        this.fromAlgorithmPropertiesDataPopulator = fromAlgorithmPropertiesDataPopulator;
+    }
 
     @Override
     public ConfigurationDTO populate(ConfigurationData configurationData) {
@@ -20,11 +25,8 @@ public class ConfigurationDTOFromConfigurationDataPopulator extends DataPopulato
                 .withProjectId(configurationData.getProjectId())
                 .withName(configurationData.getName())
                 .withDescription(configurationData.getDescription())
-                .withInputFilename(configurationData.getInputFilename())
                 .withTag(configurationData.getTag())
-                .withAlgorithm(configurationData.getAlgorithm())
-                .withAlgorithmProperties(configurationData.getAlgorithmProperties())
-                .withStrategy(configurationData.getStrategy())
+                .withAlgorithmProperties(fromAlgorithmPropertiesDataPopulator.populate(configurationData.getAlgorithmProperties()))
                 .withId(configurationData.getId())
                 .withCreationTime(configurationData.getCreationTime())
                 .withCreationUsId(configurationData.getCreationUsId())

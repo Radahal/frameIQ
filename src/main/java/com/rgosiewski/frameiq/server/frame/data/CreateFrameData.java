@@ -7,12 +7,14 @@ package com.rgosiewski.frameiq.server.frame.data;
 
 public class CreateFrameData {
     private final Long movieId;
+    private final Long processingId;
     private final Integer ordinal;
     private final String name;
     private final String description;
 
-    public CreateFrameData(Long movieId, Integer ordinal, String name, String description) {
+    public CreateFrameData(Long movieId, Long processingId, Integer ordinal, String name, String description) {
         this.movieId = movieId;
+        this.processingId = processingId;
         this.ordinal = ordinal;
         this.name = name;
         this.description = description;
@@ -20,6 +22,10 @@ public class CreateFrameData {
 
     public Long getMovieId() {
         return movieId;
+    }
+
+    public Long getProcessingId() {
+        return processingId;
     }
 
     public Integer getOrdinal() {
@@ -40,12 +46,18 @@ public class CreateFrameData {
 
     public static final class Builder {
         private Long movieId;
+        private Long processingId;
         private Integer ordinal;
         private String name;
         private String description;
 
         public Builder withMovieId(Long movieId) {
             this.movieId = movieId;
+            return this;
+        }
+
+        public Builder withProcessingId(Long processingId) {
+            this.processingId = processingId;
             return this;
         }
 
@@ -66,7 +78,7 @@ public class CreateFrameData {
 
 
         public CreateFrameData build() {
-            return new CreateFrameData(movieId, ordinal, name, description);
+            return new CreateFrameData(movieId, processingId, ordinal, name, description);
         }
 
     }

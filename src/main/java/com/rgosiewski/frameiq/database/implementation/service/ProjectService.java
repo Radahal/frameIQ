@@ -15,11 +15,13 @@ import java.util.List;
 @Service
 public class ProjectService implements IProjectService {
     private final ProjectRepository projectRepository;
+    private final UserService userService;
     private final ProjectDataFromProjectEntityPopulator fromProjectEntityPopulator;
 
     public ProjectService(ProjectRepository projectRepository,
-                          ProjectDataFromProjectEntityPopulator fromProjectEntityPopulator) {
+                          UserService userService, ProjectDataFromProjectEntityPopulator fromProjectEntityPopulator) {
         this.projectRepository = projectRepository;
+        this.userService = userService;
         this.fromProjectEntityPopulator = fromProjectEntityPopulator;
     }
 
@@ -45,6 +47,8 @@ public class ProjectService implements IProjectService {
         entity.setDescription(createProjectData.getDescription());
         entity.setCreationTime(new Date());
         entity.setModificationTime(new Date());
+        entity.setCreationUsId(userService.getAdminId());
+        entity.setModificationUsId(userService.getAdminId());
         return fromProjectEntityPopulator.populate(projectRepository.saveAndFlush(entity));
     }
 
@@ -54,6 +58,7 @@ public class ProjectService implements IProjectService {
         entity.setName(editProjectData.getName());
         entity.setDescription(editProjectData.getDescription());
         entity.setModificationTime(new Date());
+        entity.setModificationUsId(userService.getAdminId());
         return fromProjectEntityPopulator.populate(projectRepository.saveAndFlush(entity));
     }
 }

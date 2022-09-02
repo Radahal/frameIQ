@@ -7,10 +7,7 @@ package com.rgosiewski.frameiq.database.implementation.model;
 
 import com.rgosiewski.frameiq.database.definition.model.IPassword;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,6 +15,7 @@ import java.util.Date;
 public class PasswordEntity extends ModelEntity implements IPassword {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pass_id")
     private long id;
 

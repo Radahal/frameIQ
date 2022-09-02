@@ -5,11 +5,16 @@
 
 package com.rgosiewski.frameiq.server.project.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+
+@ValueObject
 public class EditProjectDTO {
     private final String name;
     private final String description;
 
-    public EditProjectDTO(String name, String description) {
+    public EditProjectDTO(@JsonProperty("name") String name,
+                          @JsonProperty("description") String description) {
         this.name = name;
         this.description = description;
     }

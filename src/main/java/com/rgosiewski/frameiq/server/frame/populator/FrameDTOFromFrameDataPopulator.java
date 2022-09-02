@@ -17,6 +17,7 @@ public class FrameDTOFromFrameDataPopulator extends DataPopulator<FrameData, Fra
     public FrameDTO populate(FrameData frameData) {
         return FrameDTO.builder()
                 .withMovieId(frameData.getMovieId())
+                .withProcessingId(frameData.getProcessingId())
                 .withOrdinal(frameData.getOrdinal())
                 .withName(frameData.getName())
                 .withDescription(frameData.getDescription())

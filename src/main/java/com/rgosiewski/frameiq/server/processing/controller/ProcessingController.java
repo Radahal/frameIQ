@@ -23,14 +23,14 @@ public class ProcessingController {
         this.processingFacade = processingFacade;
     }
 
+    @GetMapping()
+    public List<ProcessingDTO> listAll() {
+        return processingFacade.listAll();
+    }
+
     @GetMapping("/{processingId}")
     public ProcessingDTO getProcessing(@PathVariable Long processingId) {
         return processingFacade.getProcessing(processingId);
-    }
-
-    @GetMapping("/all")
-    public List<ProcessingDTO> listAll() {
-        return processingFacade.listAll();
     }
 
     @GetMapping("/blueprints/{blueprintId}")

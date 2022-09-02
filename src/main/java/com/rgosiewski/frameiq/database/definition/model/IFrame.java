@@ -2,6 +2,10 @@ package com.rgosiewski.frameiq.database.definition.model;
 
 public interface IFrame extends IModel {
 
+    long getProcessingId();
+
+    void setProcessingId(Long processingId);
+
     long getMovieId();
 
     void setMovieId(Long movieId);

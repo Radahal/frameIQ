@@ -5,38 +5,37 @@
 
 package com.rgosiewski.frameiq.server.configuration.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
 
 import java.util.Date;
 
+@ValueObject
 public class ConfigurationDTO extends IDTO {
     private final Long projectId;
     private final String name;
     private final String description;
     private final String tag;
-    private final String inputFilename;
-    private final String algorithm;
-    private final String algorithmProperties;
-    private final String strategy;
+    private final AlgorithmPropertiesDTO algorithmProperties;
 
-    public ConfigurationDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime,
-                            Long projectId,
-                            String name,
-                            String description, String tag,
-                            String inputFilename,
-                            String algorithm,
-                            String algorithmProperties,
-                            String strategy) {
+    public ConfigurationDTO(@JsonProperty("id") Long id,
+                            @JsonProperty("creationUsId") Long creationUsId,
+                            @JsonProperty("modificationUsId") Long modificationUsId,
+                            @JsonProperty("creationTime") Date creationTime,
+                            @JsonProperty("modificationTime") Date modificationTime,
+                            @JsonProperty("projectId") Long projectId,
+                            @JsonProperty("name") String name,
+                            @JsonProperty("description") String description,
+                            @JsonProperty("tag") String tag,
+                            @JsonProperty("algorithmProperties") AlgorithmPropertiesDTO algorithmProperties) {
         super(id, creationUsId, modificationUsId, creationTime, modificationTime);
         this.projectId = projectId;
         this.name = name;
         this.description = description;
         this.tag = tag;
-        this.inputFilename = inputFilename;
-        this.algorithm = algorithm;
         this.algorithmProperties = algorithmProperties;
-        this.strategy = strategy;
     }
 
     public Long getProjectId() {
@@ -55,20 +54,8 @@ public class ConfigurationDTO extends IDTO {
         return tag;
     }
 
-    public String getInputFilename() {
-        return inputFilename;
-    }
-
-    public String getAlgorithm() {
-        return algorithm;
-    }
-
-    public String getAlgorithmProperties() {
+    public AlgorithmPropertiesDTO getAlgorithmProperties() {
         return algorithmProperties;
-    }
-
-    public String getStrategy() {
-        return strategy;
     }
 
     public static Builder builder() {
@@ -80,10 +67,7 @@ public class ConfigurationDTO extends IDTO {
         private String name;
         private String description;
         private String tag;
-        private String inputFilename;
-        private String algorithm;
-        private String algorithmProperties;
-        private String strategy;
+        private AlgorithmPropertiesDTO algorithmProperties;
 
         public Builder withProjectId(Long projectId) {
             this.projectId = projectId;
@@ -105,23 +89,8 @@ public class ConfigurationDTO extends IDTO {
             return this;
         }
 
-        public Builder withInputFilename(String inputFilename) {
-            this.inputFilename = inputFilename;
-            return this;
-        }
-
-        public Builder withAlgorithm(String algorithm) {
-            this.algorithm = algorithm;
-            return this;
-        }
-
-        public Builder withAlgorithmProperties(String algorithmProperties) {
+        public Builder withAlgorithmProperties(AlgorithmPropertiesDTO algorithmProperties) {
             this.algorithmProperties = algorithmProperties;
-            return this;
-        }
-
-        public Builder withStrategy(String strategy) {
-            this.strategy = strategy;
             return this;
         }
 
@@ -151,7 +120,7 @@ public class ConfigurationDTO extends IDTO {
         }
 
         public ConfigurationDTO build() {
-            return new ConfigurationDTO(id, creationUsId, modificationUsId, creationTime, modificationTime, projectId, name, description, tag, inputFilename, algorithm, algorithmProperties, strategy);
+            return new ConfigurationDTO(id, creationUsId, modificationUsId, creationTime, modificationTime, projectId, name, description, tag, algorithmProperties);
         }
     }
 }

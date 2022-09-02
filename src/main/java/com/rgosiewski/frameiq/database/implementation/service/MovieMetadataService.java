@@ -14,10 +14,12 @@ import java.util.List;
 @Service
 public class MovieMetadataService implements IMovieMetadataService {
     private final MovieMetadataRepository movieMetadataRepository;
+    private final UserService userService;
     private final MovieMetadataDataFromMovieMetadataEntityPopulator fromMovieMetadataEntityPopulator;
 
-    public MovieMetadataService(MovieMetadataRepository movieMetadataRepository, MovieMetadataDataFromMovieMetadataEntityPopulator fromMovieMetadataEntityPopulator) {
+    public MovieMetadataService(MovieMetadataRepository movieMetadataRepository, UserService userService, MovieMetadataDataFromMovieMetadataEntityPopulator fromMovieMetadataEntityPopulator) {
         this.movieMetadataRepository = movieMetadataRepository;
+        this.userService = userService;
         this.fromMovieMetadataEntityPopulator = fromMovieMetadataEntityPopulator;
     }
 
@@ -38,6 +40,8 @@ public class MovieMetadataService implements IMovieMetadataService {
         entity.setModificationTime(new Date());
         entity.setMovieId(createMovieMetadataData.getMovieId());
         entity.setProcessedMetadata(createMovieMetadataData.getMetadata());
+        entity.setCreationUsId(userService.getAdminId());
+        entity.setModificationUsId(userService.getAdminId());
         //entity.setExifMetadataId(); maybe reverse logic?
         return fromMovieMetadataEntityPopulator.populate(movieMetadataRepository.saveAndFlush(entity));
     }

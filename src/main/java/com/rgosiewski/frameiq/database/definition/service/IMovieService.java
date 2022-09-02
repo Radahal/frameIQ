@@ -12,6 +12,8 @@ public interface IMovieService {
 
     public MovieData getMovie(Long movieId);
 
+    public MovieData findByName(String name);
+
     public List<MovieData> listAllByBlueprintId(Long blueprintId);
 
     public MovieData createMovie(CreateMovieData createMovieData);

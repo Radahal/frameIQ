@@ -5,8 +5,12 @@
 
 package com.rgosiewski.frameiq.server.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+
 import java.util.Date;
 
+@ValueObject
 public class IDTO {
     private final Long id;
     private final Long creationUsId;
@@ -14,7 +18,11 @@ public class IDTO {
     private final Date creationTime;
     private final Date modificationTime;
 
-    public IDTO(Long id, Long creationUsId, Long modificationUsId, Date creationTime, Date modificationTime) {
+    public IDTO(@JsonProperty("id") Long id,
+                @JsonProperty("creationUsId") Long creationUsId,
+                @JsonProperty("modificationUsId") Long modificationUsId,
+                @JsonProperty("creationTime") Date creationTime,
+                @JsonProperty("modificationTime") Date modificationTime) {
         this.id = id;
         this.creationUsId = creationUsId;
         this.modificationUsId = modificationUsId;

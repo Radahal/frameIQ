@@ -7,10 +7,7 @@ package com.rgosiewski.frameiq.database.implementation.model;
 
 import com.rgosiewski.frameiq.database.definition.model.IFrame;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,8 +15,12 @@ import java.util.Date;
 public class FrameEntity extends ModelEntity implements IFrame {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fr_id")
     private int id;
+
+    @Column(name = "fr_proc_id")
+    private long processingId;
 
     @Column(name = "fr_creation_us_id")
     private long creationUsId;
@@ -48,6 +49,16 @@ public class FrameEntity extends ModelEntity implements IFrame {
     @Override
     public long getId() {
         return id;
+    }
+
+    @Override
+    public long getProcessingId() {
+        return processingId;
+    }
+
+    @Override
+    public void setProcessingId(Long processingId) {
+        this.processingId = processingId;
     }
 
     @Override

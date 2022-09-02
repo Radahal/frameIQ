@@ -8,11 +8,11 @@ package com.rgosiewski.frameiq.server.configuration.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
-import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.common.stereotype.DTO;
 
 import java.util.Date;
 
-@ValueObject
+@DTO
 public class ConfigurationDTO extends IDTO {
     private final Long projectId;
     private final String name;

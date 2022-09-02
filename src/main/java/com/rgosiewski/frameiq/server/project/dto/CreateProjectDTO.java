@@ -6,10 +6,10 @@
 package com.rgosiewski.frameiq.server.project.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.common.stereotype.DTO;
 import com.sun.istack.NotNull;
 
-@ValueObject
+@DTO
 public class CreateProjectDTO {
     @NotNull
     private final String name;

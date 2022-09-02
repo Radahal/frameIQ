@@ -11,6 +11,7 @@ import com.rgosiewski.frameiq.server.blueprint.data.BlueprintData;
 import com.rgosiewski.frameiq.server.configuration.data.ConfigurationData;
 import com.rgosiewski.frameiq.server.movie.data.CreateMovieData;
 import com.rgosiewski.frameiq.server.movie.data.MovieData;
+import com.rgosiewski.frameiq.server.processing.data.ProcessingData;
 import com.rgosiewski.frameiq.server.project.data.ProjectData;
 import com.rgosiewski.frameiq.workspace.management.Workspace;
 import org.apache.logging.log4j.Level;
@@ -35,10 +36,12 @@ public class VideoSplitter {
         this.workspace = workspace;
     }
 
-    public MovieData processVideo(BlueprintData blueprintData, ConfigurationData configuration) {
+    public MovieData processVideo(BlueprintData blueprintData, ProcessingData processingData, ConfigurationData configuration) {
         ProjectData project = projectService.getProject(configuration.getProjectId());
         Path projectPath = workspace.getOrCreateProjectPath(project.getName());
-        VideoProcessor videoProcessor = new VideoProcessor(configuration.getAlgorithmProperties(), projectPath);
+        Path configurationPath = workspace.getOrCreateConfigurationPath(projectPath, configuration.getName());
+        Path processingPath = workspace.getOrCreateProcessingPath(configurationPath, processingData.getId());
+        VideoProcessor videoProcessor = new VideoProcessor(configuration.getAlgorithmProperties(), processingPath);
         videoProcessor.run();
         logger.log(Level.INFO, "Video has been processed (frames has been extracted).");
         return movieService.createMovie(CreateMovieData.builder()

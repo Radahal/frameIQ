@@ -87,7 +87,7 @@ public class ConfigurationFacade {
             Strategy strategy = configuration.getAlgorithmProperties().getStrategy();
             switch (strategy) {
                 case SPLIT_VIDEO:
-                    MovieData movieData = videoSplitter.processVideo(blueprint, configuration);
+                    MovieData movieData = videoSplitter.processVideo(blueprint, processingData, configuration);
                     frameReader.processNewFrames(processingData.getId(), movieData, configuration);
                     break;
                 case PROCESS_FRAMES:

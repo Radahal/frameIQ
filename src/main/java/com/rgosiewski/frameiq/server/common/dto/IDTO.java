@@ -6,11 +6,11 @@
 package com.rgosiewski.frameiq.server.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.common.stereotype.DTO;
 
 import java.util.Date;
 
-@ValueObject
+@DTO
 public class IDTO {
     private final Long id;
     private final Long creationUsId;

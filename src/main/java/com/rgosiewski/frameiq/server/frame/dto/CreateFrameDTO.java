@@ -6,9 +6,9 @@
 package com.rgosiewski.frameiq.server.frame.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.common.stereotype.DTO;
 
-@ValueObject
+@DTO
 public class CreateFrameDTO {
     private final Integer ordinal;
     private final String name;

@@ -7,12 +7,12 @@ package com.rgosiewski.frameiq.server.configuration.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.alghorithm.enums.Metrics;
-import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.common.stereotype.DTO;
 import com.rgosiewski.frameiq.server.configuration.enums.Strategy;
 import com.rgosiewski.frameiq.workspace.enums.FileExtensions;
 import com.sun.istack.NotNull;
 
-@ValueObject
+@DTO
 public class AlgorithmPropertiesDTO {
     @NotNull
     private final Strategy strategy;

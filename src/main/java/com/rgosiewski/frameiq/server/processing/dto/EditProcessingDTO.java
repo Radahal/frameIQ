@@ -6,10 +6,10 @@
 package com.rgosiewski.frameiq.server.processing.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.common.stereotype.DTO;
 import com.rgosiewski.frameiq.server.processing.enums.ProcessingStates;
 
-@ValueObject
+@DTO
 public class EditProcessingDTO {
     private final Long blueprintId;
     private final ProcessingStates state;

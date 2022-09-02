@@ -39,6 +39,22 @@ public class Workspace {
         return projectPath;
     }
 
+    public Path getOrCreateConfigurationPath(Path projectPath, String configurationName) {
+        Path configurationPath = projectPath.resolve(configurationName);
+        if( !configurationPath.toFile().exists()) {
+            configurationPath.toFile().mkdir();
+        }
+        return configurationPath;
+    }
+
+    public Path getOrCreateProcessingPath(Path configurationPath, Long processingId) {
+        Path processingPath = configurationPath.resolve(processingId.toString());
+        if( !processingPath.toFile().exists()) {
+            processingPath.toFile().mkdir();
+        }
+        return processingPath;
+    }
+
     public Path getProjectPath(String projectName) {
         Path projectPath = Paths.get(workspaceUtils.getWorkspacePath()).resolve(projectName);
         if(projectPath.toFile().exists()) {

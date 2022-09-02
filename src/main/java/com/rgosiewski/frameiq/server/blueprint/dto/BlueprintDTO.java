@@ -8,12 +8,12 @@ package com.rgosiewski.frameiq.server.blueprint.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rgosiewski.frameiq.server.common.dto.IDTO;
 import com.rgosiewski.frameiq.server.common.dto.IDTOBuilder;
-import com.rgosiewski.frameiq.server.common.stereotype.ValueObject;
+import com.rgosiewski.frameiq.server.common.stereotype.DTO;
 import com.rgosiewski.frameiq.server.configuration.dto.AlgorithmPropertiesDTO;
 
 import java.util.Date;
 
-@ValueObject
+@DTO
 public class BlueprintDTO extends IDTO {
     private final Long configurationId;
     private final String name;

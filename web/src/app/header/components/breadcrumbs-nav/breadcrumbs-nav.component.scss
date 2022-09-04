@@ -1,0 +1,38 @@
+@use "../../../../styles/variables" as variables;
+
+.breadcrumbs {
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+
+  &-item {
+    display: inline-flex;
+    flex-direction: row;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding-left: 1rem;
+
+    &__container {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+
+      &--icon {
+
+      }
+
+      &--name {
+        padding-left: 1rem;
+      }
+    }
+
+    &--separator {
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;
+    }
+  }
+
+}
+

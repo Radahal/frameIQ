@@ -1,0 +1,42 @@
+@import "../styles/variables";
+
+.main-container {
+  min-width: 100%;
+  min-height: 100%;
+
+  background-color: $material-grey;
+  display: grid;
+  grid-template-rows:
+    [header-start] 2rem
+    [header-end additional-content-start] 6rem
+    [additional-content-end additional-content-start] 2rem
+    [content-end];
+
+  grid-template-columns:
+    0 [decorator]
+    2rem [decorator version]
+    25rem [version start-content]
+    minmax(0, 1fr) [start-content end-content];
+
+  .content {
+    grid-column: start-content / end-content;
+    grid-row: content-end / -1;
+    max-width: calc(100vw - calc(2*#{$content-padding}));
+  }
+
+  .version {
+    grid-row: content-end;
+    grid-column: version;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    align-self: end;
+    color: $material-grey;
+    user-select: none;
+  }
+}
+
+a, a:active, a:visited, a:focus, a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}

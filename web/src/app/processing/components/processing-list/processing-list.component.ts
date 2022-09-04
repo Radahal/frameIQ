@@ -13,7 +13,6 @@ export class ProcessingListComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    console.log("processing component")
   }
 
   ngOnDestroy(): void {

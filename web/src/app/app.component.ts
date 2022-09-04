@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {environment} from "../environments/environment";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -19,14 +18,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AppComponent implements OnInit, OnDestroy {
   version = environment.version;
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor() {
 
   }
 
   ngOnInit() {
-    let url = this.activatedRoute.url.subscribe((next) => {
-      console.log(next);
-    });
   }
 
   ngOnDestroy(): void {

@@ -21,6 +21,11 @@
     cursor: pointer;
     user-select: none;
 
+    &--link {
+      display: inherit;
+      width: 100%;
+    }
+
     &--active {
       background-color: variables.$secondary-theme-heighlight-color!important;
     }

@@ -18,14 +18,19 @@
   <div class="left-menu__item"
        [ngClass]="{'left-menu__item--active': navigationItem.active}"
   >
-    <!--<a [routerLink]="item.url">-->
-    <div class="left-menu__item--decorator"
-         [ngClass]="{'left-menu__item--decorator--active': navigationItem.active}"
+    <a
+      class="left-menu__item--link"
+      [routerLink]="navigationItem.url"
+      [routerLinkActive]="navigationItem.url"
     >
-    </div>
-    <div class="left-menu__item--container">
-      <mat-icon class="left-menu__item--icon">{{navigationItem.type | matIcon }}</mat-icon>
-      <span class="left-menu__item--name">{{navigationItem.name | transloco }}</span>
-    </div>
+      <div class="left-menu__item--decorator"
+           [ngClass]="{'left-menu__item--decorator--active': navigationItem.active}"
+      >
+      </div>
+      <div class="left-menu__item--container">
+        <mat-icon class="left-menu__item--icon">{{navigationItem.type | matIcon }}</mat-icon>
+        <span class="left-menu__item--name">{{navigationItem.name | transloco }}</span>
+      </div>
+    </a>
   </div>
 </ng-template>

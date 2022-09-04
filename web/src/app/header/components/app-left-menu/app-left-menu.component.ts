@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {TranslocoService} from "@ngneat/transloco";
 import {NavigationItem, NavigationItemType} from "../../models/navigation-item.model";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-left-menu',
@@ -9,18 +10,30 @@ import {NavigationItem, NavigationItemType} from "../../models/navigation-item.m
 })
 export class AppLeftMenuComponent implements OnInit, OnDestroy {
   navigationItems: NavigationItem[] = [
-    new NavigationItem(NavigationItemType.DASHBOARD, "app.navigation.dashboard", "", true),
-    new NavigationItem(NavigationItemType.PROJECT, "app.navigation.project", "", false),
-    new NavigationItem(NavigationItemType.PROCESSING, "app.navigation.processing", "", false),
+    new NavigationItem(NavigationItemType.DASHBOARD, "app.navigation.dashboard", "/dashboard", false),
+    new NavigationItem(NavigationItemType.PROJECT, "app.navigation.project", "/projects", false),
+    new NavigationItem(NavigationItemType.PROCESSING, "app.navigation.processing", "/processings", false),
   ];
-  constructor(private translocoService: TranslocoService) {
+  constructor(private translocoService: TranslocoService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe( (event) => {
+      if (event instanceof NavigationEnd ) {
+        this.refreshRoute(event.url);
+      }
+    })
   }
 
   ngOnDestroy(): void {
 
+  }
+
+  private refreshRoute(url: string) {
+    this.navigationItems.map((navigationItem) => {
+      navigationItem.active = url.startsWith(navigationItem.url);
+    })
   }
 
 }

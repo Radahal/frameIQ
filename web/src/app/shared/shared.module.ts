@@ -5,10 +5,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import {MaterialModule} from "./modules/material.module";
 import {TranslocoModule} from "@ngneat/transloco";
+import {MatIconPipe} from "./pipes/icon-scg-src/icon-svg-src.pipe";
 
 @NgModule({
   declarations: [
-
+    MatIconPipe
   ],
   imports: [
     MaterialModule,
@@ -22,6 +23,7 @@ import {TranslocoModule} from "@ngneat/transloco";
   exports: [
     MaterialModule,
     TranslocoModule,
+    MatIconPipe
   ]
 })
 export class SharedModule {

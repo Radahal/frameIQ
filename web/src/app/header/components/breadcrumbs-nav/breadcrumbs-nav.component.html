@@ -1,0 +1,31 @@
+<div class="breadcrumbs">
+  <ng-container
+    *ngFor="let item of breadcrumbs; index as index"
+    [ngTemplateOutlet]="breadcrumbItem"
+    [ngTemplateOutletContext]="{
+      item: item,
+      index: index
+    }"
+  >
+  </ng-container>
+</div>
+
+<ng-template
+  #breadcrumbItem
+  let-item="item"
+  let-index="index"
+>
+  <div class="breadcrumbs-item">
+    <!--<a [routerLink]="item.url">-->
+    <div class="breadcrumbs-item__container">
+      <mat-icon class="breadcrumbs-item__container--icon">{{item.type | matIcon }}</mat-icon>
+      <span class="breadcrumbs-item__container--name">{{item.name }}</span>
+    </div>
+    <!--</a>-->
+    <div
+      *ngIf="index < breadcrumbs.length - 1"
+      class="breadcrumbs-item--separator">
+      <mat-icon>chevron_right</mat-icon>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,35 @@
+@import "../styles/variables";
+
+.main-container {
+  min-width: 100%;
+  min-height: 100%;
+
+  background-color: $material-grey;
+  display: grid;
+  grid-template-rows:
+    [header-start] 2rem
+    [header-end additional-content-start] 4rem
+    [additional-content-end] 4rem
+    [content-end];
+
+  grid-template-columns:
+    $content-padding [start-content]
+    minmax(0, 1fr) [content]
+    $content-padding [end-content];
+
+  .content {
+    grid-column: start-content / end-content;
+    grid-row: additional-content-end / content-end;
+    max-width: calc(100vw - calc(2*#{$content-padding}));
+  }
+
+  .version {
+    grid-row: -1;
+    grid-column: start-content;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    align-self: end;
+    color: $material-grey;
+    user-select: none;
+  }
+}

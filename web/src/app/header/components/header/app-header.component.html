@@ -1,0 +1,16 @@
+<div class="app-header">
+  <div class="app-header__identification">
+    <div class="app-header__identification--logo">
+      <svg-icon
+        src="../../../assets/images/logo_frameIQ.svg"
+        [svgStyle]="{ 'width.rem': 5 , 'height.rem': 5 }"
+        attr.aria-label="{{ 'app.logo' | transloco }}"
+      ></svg-icon>
+    </div>
+    <div class="app-header__identification__container">
+      <span class="app-header__identification--title">{{ 'app.title' | transloco }}</span>
+      <span class="app-header__identification--subtitle">{{ 'app.subtitle' | transloco }}</span>
+    </div>
+  </div>
+  <breadcrumbs-nav></breadcrumbs-nav>
+</div>

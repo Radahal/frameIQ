@@ -5,10 +5,9 @@ import {environment} from "../environments/environment";
   selector: 'app-root',
   template: `
     <div class="main-container">
-      <!--  <app-header> -->
-      {{ 'common.title' | transloco }}
+      <app-header></app-header>
       <ng-container>
-        <!-- <app-navigation-menu> -->
+        <app-left-menu></app-left-menu>
         <div class="content">
           <router-outlet></router-outlet>
         </div>

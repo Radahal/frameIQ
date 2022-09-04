@@ -1,4 +1,17 @@
 {
+  "app": {
+    "title": "FrameIQ",
+    "subtitle": "Video frame assessment",
+    "logo": "FrameIQ logotype",
+    "navigation": {
+      "dashboard": "Dashboard",
+      "project": "Project",
+      "processing": "Processing",
+      "configuration": "Configuration",
+      "blueprint": "Blueprint",
+      "frame": "Frame"
+    }
+  },
  "common": {
    "title": "frameIQ"
  }

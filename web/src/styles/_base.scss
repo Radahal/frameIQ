@@ -34,3 +34,9 @@
     user-select: none;
   }
 }
+
+a, a:active, a:visited, a:focus, a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}

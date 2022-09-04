@@ -1,29 +1,21 @@
 import {NgModule} from "@angular/core";
-import {MaterialModule} from "../shared/modules/material.module";
-import {RouterModule} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
-import {AngularSvgIconModule} from "angular-svg-icon";
-import {TranslocoModule} from "@ngneat/transloco";
-import {MatIconModule} from "@angular/material/icon";
 import {CommonModule} from "@angular/common";
-import {SharedModule} from "../shared/shared.module";
+import {ProcessingComponent} from "./components/processing/processing.component";
+import {ProcessingListComponent} from "./components/processing-list/processing-list.component";
+import {ProcessingRoutingModule} from "./processing-routing.module";
 
 @NgModule({
   declarations: [
-
+    ProcessingComponent,
+    ProcessingListComponent
   ],
   exports: [
-
+    ProcessingComponent,
+    ProcessingListComponent
   ],
   imports: [
-    MaterialModule,
-    RouterModule,
-    HttpClientModule,
-    AngularSvgIconModule.forRoot(),
-    TranslocoModule,
-    MatIconModule,
     CommonModule,
-    SharedModule
+    ProcessingRoutingModule
   ]
 })
 export class ProcessingModule {}

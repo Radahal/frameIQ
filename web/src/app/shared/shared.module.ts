@@ -6,10 +6,18 @@ import {RouterModule} from "@angular/router";
 import {MaterialModule} from "./modules/material.module";
 import {TranslocoModule} from "@ngneat/transloco";
 import {MatIconPipe} from "./pipes/icon-scg-src/icon-svg-src.pipe";
+import {NavigationLinkPipe} from "./pipes/navigation-link/icon-svg-src.pipe";
 
 @NgModule({
   declarations: [
-    MatIconPipe
+    MatIconPipe,
+    NavigationLinkPipe
+  ],
+  exports: [
+    MaterialModule,
+    TranslocoModule,
+    MatIconPipe,
+    NavigationLinkPipe
   ],
   imports: [
     MaterialModule,
@@ -19,11 +27,6 @@ import {MatIconPipe} from "./pipes/icon-scg-src/icon-svg-src.pipe";
     AngularSvgIconModule.forRoot(),
     HttpClientModule,
     RouterModule
-  ],
-  exports: [
-    MaterialModule,
-    TranslocoModule,
-    MatIconPipe
   ]
 })
 export class SharedModule {

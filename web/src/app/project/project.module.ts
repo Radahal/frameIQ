@@ -1,29 +1,18 @@
 import {NgModule} from "@angular/core";
-import {MaterialModule} from "../shared/modules/material.module";
-import {RouterModule} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
-import {AngularSvgIconModule} from "angular-svg-icon";
-import {TranslocoModule} from "@ngneat/transloco";
-import {MatIconModule} from "@angular/material/icon";
 import {CommonModule} from "@angular/common";
-import {SharedModule} from "../shared/shared.module";
+import {ProjectComponent} from "./components/project/project.component";
+import {ProjectRoutingModule} from "./project-routing.module";
 
 @NgModule({
   declarations: [
-
+    ProjectComponent,
   ],
   exports: [
-
+    ProjectComponent
   ],
   imports: [
-    MaterialModule,
-    RouterModule,
-    HttpClientModule,
-    AngularSvgIconModule.forRoot(),
-    TranslocoModule,
-    MatIconModule,
     CommonModule,
-    SharedModule
+    ProjectRoutingModule
   ]
 })
 export class ProjectModule {}

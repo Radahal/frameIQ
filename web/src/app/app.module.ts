@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -10,9 +9,6 @@ import {ManageHttpInterceptor} from "./shared/interceptors/manage-http/manage-ht
 import {TranslocoRootModule} from "./transloco/transloco-root.module";
 import {ToastrCustomComponent} from "./shared/components/toastr-custom/toastr-custom.component";
 import {HeaderModule} from "./header/header.module";
-import {DashboardModule} from "./dashboard/dashboard.module";
-import {ProjectModule} from "./project/project.module";
-import {ProcessingModule} from "./processing/processing.module";
 
 @NgModule({
   declarations: [
@@ -25,9 +21,6 @@ import {ProcessingModule} from "./processing/processing.module";
       HttpClientModule,
       BrowserAnimationsModule,
       HeaderModule,
-      DashboardModule,
-      ProjectModule,
-      ProcessingModule,
       TranslocoRootModule,
       ToastrModule.forRoot({
         timeOut: 10000,

@@ -1,13 +1,32 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {AppDashboardComponent} from "./dashboard/components/app-dashboard/app-dashboard.component";
 
 const routes: Routes = [
-  { path: 'no-access', component: AppDashboardComponent },
-  // { path: '/',
-  //   loadChildren: () =>
-  //     import("./dashboard/dashboard.module").then(({DashboardModule}) => DashboardModule),
-  // }
+  { path: 'dashboard',
+    loadChildren: () =>
+      import("./dashboard/dashboard.module").then(({DashboardModule}) => DashboardModule),
+  },
+  { path: 'projects',
+    loadChildren: () =>
+      import("./project/project.module").then(({ProjectModule}) => ProjectModule),
+  },
+  { path: 'projects/:projectId/configurations',
+    loadChildren: () =>
+      import("./configuration/configuration.module").then(({ConfigurationModule}) => ConfigurationModule),
+  },
+  { path: 'projects/:projectId/configurations/:configurationId/blueprints',
+    loadChildren: () =>
+      import("./blueprint/blueprint.module").then(({BlueprintModule}) => BlueprintModule),
+  },
+  { path: 'processings',
+    loadChildren: () =>
+      import("./processing/processing.module").then(({ProcessingModule}) => ProcessingModule),
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
 ]
 
 @NgModule({

@@ -2,7 +2,8 @@ export enum NavigationItemType {
   DASHBOARD = "dashboard",
   PROJECT = "project",
   CONFIGURATION = "configuration",
-  PROCESSING = "processing"
+  PROCESSING = "processing",
+  BLUEPRINT = "blueprint"
 }
 
 export class NavigationItem {

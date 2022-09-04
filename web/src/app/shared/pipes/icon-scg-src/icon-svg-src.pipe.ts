@@ -8,7 +8,7 @@ export class MatIconPipe implements PipeTransform {
   transform(value: NavigationItemType, ...args: any[]): any {
     switch (value) {
       case NavigationItemType.DASHBOARD:
-        return 'work';
+        return 'dashboard';
       case NavigationItemType.PROJECT:
         return 'work';
       case NavigationItemType.CONFIGURATION:

@@ -10,6 +10,9 @@ import {ManageHttpInterceptor} from "./shared/interceptors/manage-http/manage-ht
 import {TranslocoRootModule} from "./transloco/transloco-root.module";
 import {ToastrCustomComponent} from "./shared/components/toastr-custom/toastr-custom.component";
 import {HeaderModule} from "./header/header.module";
+import {DashboardModule} from "./dashboard/dashboard.module";
+import {ProjectModule} from "./project/project.module";
+import {ProcessingModule} from "./processing/processing.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import {HeaderModule} from "./header/header.module";
       HttpClientModule,
       BrowserAnimationsModule,
       HeaderModule,
+      DashboardModule,
+      ProjectModule,
+      ProcessingModule,
       TranslocoRootModule,
       ToastrModule.forRoot({
         timeOut: 10000,

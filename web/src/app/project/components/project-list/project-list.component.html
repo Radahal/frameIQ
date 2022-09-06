@@ -1,0 +1,42 @@
+<div class="project-list">
+  <div class="project-list__header">
+    <span class="project-list__header--title">{{ 'project.list.title' | transloco }}</span>
+    <div class="project-list__header--actions">
+        <mat-icon
+          class="project-list__header--actions__button"
+          (click)="this.onNewProject()"
+        >
+          add_box
+        </mat-icon>
+    </div>
+  </div>
+  <ng-container *ngFor="let project of projects"
+    [ngTemplateOutlet]="projectListItem"
+    [ngTemplateOutletContext]="{
+      project: project
+    }"
+  >
+
+  </ng-container>
+</div>
+
+<ng-template
+  #projectListItem
+  let-project="project">
+  <div class="project-list__item"
+       [ngClass]="{'project-list__item--active': project.id === this.selectedProject?.id}"
+       (click)="onProject(project)">
+    <a
+      class="project-list__item--link"
+      [routerLink]="['/','projects',project.id]"
+    >
+      <div class="project-list__item--container">
+        <span class="project-list__item--name">{{project.name}}</span>
+      </div>
+      <div class="project-list__item--decorator"
+           [ngClass]="{'project-list__item--decorator--active': project.id === this.selectedProject?.id}"
+      >
+      </div>
+    </a>
+  </div>
+</ng-template>

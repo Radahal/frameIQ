@@ -14,5 +14,13 @@
   },
  "common": {
    "title": "frameIQ"
- }
+ },
+  "project" : {
+    "list": {
+      "title": "Projects:",
+      "actions": {
+        "addProject": "New project"
+      }
+    }
+  }
 }

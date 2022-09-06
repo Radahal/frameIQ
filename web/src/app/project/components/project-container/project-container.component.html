@@ -1,0 +1,7 @@
+<div class="project-container">
+  <project-list
+    [selectedProject]="this.selectedProject"
+    (projectSelected)="onProjectSelected($event)"></project-list>
+
+  <project [project]="this.selectedProject"></project>
+</div>
